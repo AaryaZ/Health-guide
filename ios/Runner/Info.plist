@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Healthguide</string>
+	<string>Health Guide</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -45,5 +45,12 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+	<!-- Location usage descriptions -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your message here describing why you need location access when the app is in use.</string>
+
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Your message here describing why you need continuous location access.</string>
 </dict>
 </plist>

@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:healthguide/oscreens/o1.dart';
 import 'package:healthguide/oscreens/o2.dart';
 import 'package:healthguide/oscreens/o3.dart';
-import 'package:healthguide/screens/home.dart';
+import 'package:healthguide/screens/registration/name.dart'; // updated import
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 Color dblue = Color.fromARGB(255, 16, 49, 140);
@@ -19,7 +19,7 @@ class Onboarding extends StatefulWidget {
 class _OnboardingState extends State<Onboarding> {
   PageController _controller = PageController();
 
-  //if on last page
+  // if on last page
   bool onLastPage = false;
   String T1 = "Your Health Guide";
   String T2 = "Your new ultimate guide";
@@ -53,34 +53,36 @@ class _OnboardingState extends State<Onboarding> {
             },
             children: [O1(), O2(), O3()],
           ),
-          //bottom
+          // bottom
           Container(
-              alignment: Alignment(0, -0.8),
-              child: SmoothPageIndicator(
-                controller: _controller,
-                count: 3,
-                effect: SwapEffect(
-                  activeDotColor: dblue,
-                  dotColor: Colors.white,
-                  dotHeight: 15,
-                  dotWidth: 20,
-                ),
-              )),
+            alignment: Alignment(0, -0.8),
+            child: SmoothPageIndicator(
+              controller: _controller,
+              count: 3,
+              effect: SwapEffect(
+                activeDotColor: dblue,
+                dotColor: Colors.white,
+                dotHeight: 11,
+                dotWidth: 11,
+              ),
+            ),
+          ),
           Container(
-            height: GlobalHeight * 0.3,
+            height: GlobalHeight * 0.35,
             width: double.maxFinite,
             decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius:
-                    BorderRadius.only(topRight: Radius.circular(60.0))),
+              color: Colors.white,
+              borderRadius: BorderRadius.only(topRight: Radius.circular(60.0)),
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                      top: GlobalHeight * 0.3 * 0.15,
-                      left: GlobalWidth * 0.1,
-                      bottom: GlobalHeight * 0.3 * 0.01),
+                    top: GlobalHeight * 0.3 * 0.15,
+                    left: GlobalWidth * 0.1,
+                    bottom: GlobalHeight * 0.3 * 0.01,
+                  ),
                   child: FittedBox(
                     child: Text(
                       T1,
@@ -88,27 +90,27 @@ class _OnboardingState extends State<Onboarding> {
                       style: GoogleFonts.inter(
                         color: dblue,
                         fontSize: 25,
-                        fontWeight: FontWeight.w800,
-                        fontStyle: FontStyle.normal,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: GlobalWidth * 0.12),
-                  child: FittedBox(
-                    child: Text(
-                      T2,
-                      style: GoogleFonts.inter(
-                        color: Colors.grey,
-                        fontSize: 17,
                         fontWeight: FontWeight.w700,
                         fontStyle: FontStyle.normal,
                       ),
                     ),
                   ),
                 ),
-                // Button()
+                Padding(
+                  padding: EdgeInsets.only(left: GlobalWidth * 0.1),
+                  child: FittedBox(
+                    child: Text(
+                      T2,
+                      style: GoogleFonts.inter(
+                        color: Colors.grey,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        fontStyle: FontStyle.normal,
+                      ),
+                    ),
+                  ),
+                ),
+                // Button
                 Padding(
                   padding: EdgeInsets.only(
                     top: GlobalHeight * 0.3 * 0.2,
@@ -117,47 +119,45 @@ class _OnboardingState extends State<Onboarding> {
                     right: GlobalWidth * 0.15,
                   ),
                   child: GestureDetector(
-                    //if on last page
-                    // onLastPage?
                     onTap: () {
                       onLastPage
                           ? Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const Home()),
+                                  builder: (context) => NameScreen()), 
                               (route) => false,
                             )
                           : _controller.nextPage(
                               duration: Duration(milliseconds: 500),
-                              curve: Curves.easeIn);
+                              curve: Curves.easeIn,
+                            );
                     },
                     child: Container(
-                      width: GlobalWidth,
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.symmetric(vertical: 15.0),
-                      decoration: BoxDecoration(
-                        color: dblue,
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: Text(
-                        T3,
-                        style: GoogleFonts.inter(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          fontStyle: FontStyle.normal,
-                        ),
-                      ),
-                    ),
+  width: GlobalWidth * 2.5, // Adjust the width here (e.g., GlobalWidth * 0.8)
+  alignment: Alignment.center,
+  padding: EdgeInsets.symmetric(vertical: 15.0),
+  decoration: BoxDecoration(
+    color: dblue,
+    borderRadius: BorderRadius.circular(15.0),
+  ),
+  child: Text(
+    T3,
+    style: GoogleFonts.inter(
+      color: Colors.white,
+      fontSize: 17,
+      fontWeight: FontWeight.w600,
+      fontStyle: FontStyle.normal,
+    ),
+  ),
+),
+
                   ),
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
   }
 }
-
-void onTapButton() {}
