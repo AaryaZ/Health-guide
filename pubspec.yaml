@@ -16,6 +16,10 @@ dependencies:
   geolocator: ^7.7.0
   geocoding: ^2.0.1
   permission_handler: ^10.3.0
+  country_picker: ^2.0.26
+  lottie: ^3.1.2
+  provider: ^6.1.2
+  pinput: ^5.0.0
 
 dev_dependencies:
   flutter_test:

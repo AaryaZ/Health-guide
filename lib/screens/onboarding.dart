@@ -3,11 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:healthguide/oscreens/o1.dart';
 import 'package:healthguide/oscreens/o2.dart';
 import 'package:healthguide/oscreens/o3.dart';
-import 'package:healthguide/screens/registration/name.dart'; // updated import
+import 'package:healthguide/screens/login.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-Color dblue = Color.fromARGB(255, 16, 49, 140);
-Color bgblue = Color.fromARGB(253, 232, 234, 240);
+Color dblue = const Color.fromARGB(255, 16, 49, 140);
+Color bgblue = const Color.fromARGB(253, 232, 234, 240);
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -53,20 +53,19 @@ class _OnboardingState extends State<Onboarding> {
             },
             children: [O1(), O2(), O3()],
           ),
-          // bottom
+          //bottom
           Container(
-            alignment: Alignment(0, -0.8),
-            child: SmoothPageIndicator(
-              controller: _controller,
-              count: 3,
-              effect: SwapEffect(
-                activeDotColor: dblue,
-                dotColor: Colors.white,
-                dotHeight: 11,
-                dotWidth: 11,
-              ),
-            ),
-          ),
+              alignment: Alignment(0, -0.8),
+              child: SmoothPageIndicator(
+                controller: _controller,
+                count: 3,
+                effect: SwapEffect(
+                  activeDotColor: dblue,
+                  dotColor: Colors.white,
+                  dotHeight: 15,
+                  dotWidth: 20,
+                ),
+              )),
           Container(
             height: GlobalHeight * 0.35,
             width: double.maxFinite,
@@ -124,7 +123,7 @@ class _OnboardingState extends State<Onboarding> {
                           ? Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => NameScreen()), 
+                                  builder: (context) => const Login()),
                               (route) => false,
                             )
                           : _controller.nextPage(
@@ -133,24 +132,24 @@ class _OnboardingState extends State<Onboarding> {
                             );
                     },
                     child: Container(
-  width: GlobalWidth * 2.5, // Adjust the width here (e.g., GlobalWidth * 0.8)
-  alignment: Alignment.center,
-  padding: EdgeInsets.symmetric(vertical: 15.0),
-  decoration: BoxDecoration(
-    color: dblue,
-    borderRadius: BorderRadius.circular(15.0),
-  ),
-  child: Text(
-    T3,
-    style: GoogleFonts.inter(
-      color: Colors.white,
-      fontSize: 17,
-      fontWeight: FontWeight.w600,
-      fontStyle: FontStyle.normal,
-    ),
-  ),
-),
-
+                      width: GlobalWidth *
+                          2.5, // Adjust the width here (e.g., GlobalWidth * 0.8)
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.symmetric(vertical: 15.0),
+                      decoration: BoxDecoration(
+                        color: dblue,
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      child: Text(
+                        T3,
+                        style: GoogleFonts.inter(
+                          color: Colors.white,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600,
+                          fontStyle: FontStyle.normal,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],

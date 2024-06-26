@@ -48,8 +48,8 @@ class _LocationScreenState extends State<LocationScreen> {
 
     // Perform reverse geocoding
     try {
-      List<Placemark> placemarks = await placemarkFromCoordinates(
-          position.latitude, position.longitude);
+      List<Placemark> placemarks =
+          await placemarkFromCoordinates(position.latitude, position.longitude);
 
       // Extract location name from placemark
       Placemark placemark = placemarks[0]; // Most accurate result
@@ -110,13 +110,11 @@ class _LocationScreenState extends State<LocationScreen> {
                     hintText: 'Enter Your Location',
                     hintStyle: TextStyle(fontSize: screenWidth * 0.04),
                     border: OutlineInputBorder(
-                      borderRadius:
-                          BorderRadius.circular(screenWidth * 0.025),
+                      borderRadius: BorderRadius.circular(screenWidth * 0.025),
                       borderSide: BorderSide(color: Colors.white),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderRadius:
-                          BorderRadius.circular(screenWidth * 0.025),
+                      borderRadius: BorderRadius.circular(screenWidth * 0.025),
                       borderSide: BorderSide(color: Color(0xFF10328C)),
                     ),
                   ),
@@ -166,8 +164,8 @@ class _LocationScreenState extends State<LocationScreen> {
                       child: LinearProgressIndicator(
                         value: 0.2,
                         backgroundColor: Colors.transparent,
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                            Color(0xFF10328C)),
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
                       ),
                     ),
                   ),
