@@ -3,11 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:healthguide/oscreens/o1.dart';
 import 'package:healthguide/oscreens/o2.dart';
 import 'package:healthguide/oscreens/o3.dart';
-import 'package:healthguide/screens/home.dart';
+import 'package:healthguide/screens/login.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-Color dblue = Color.fromARGB(255, 16, 49, 140);
-Color bgblue = Color.fromARGB(253, 232, 234, 240);
+Color dblue = const Color.fromARGB(255, 16, 49, 140);
+Color bgblue = const Color.fromARGB(253, 232, 234, 240);
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -53,19 +53,21 @@ class _OnboardingState extends State<Onboarding> {
             },
             children: [O1(), O2(), O3()],
           ),
-          //bottom
+
           Container(
-              alignment: Alignment(0, -0.8),
-              child: SmoothPageIndicator(
-                controller: _controller,
-                count: 3,
-                effect: SwapEffect(
-                  activeDotColor: dblue,
-                  dotColor: Colors.white,
-                  dotHeight: 15,
-                  dotWidth: 20,
-                ),
-              )),
+            alignment: Alignment(0, -0.8),
+            child: SmoothPageIndicator(
+              controller: _controller,
+              count: 3,
+              effect: SwapEffect(
+                activeDotColor: dblue,
+                dotColor: Colors.white,
+                dotHeight: 15,
+                dotWidth: 20,
+              ),
+            ),
+          ),
+          //bottom
           Container(
             height: GlobalHeight * 0.3,
             width: double.maxFinite,
@@ -124,7 +126,7 @@ class _OnboardingState extends State<Onboarding> {
                           ? Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const Home()),
+                                  builder: (context) => const Login()),
                               (route) => false,
                             )
                           : _controller.nextPage(
@@ -159,5 +161,3 @@ class _OnboardingState extends State<Onboarding> {
     );
   }
 }
-
-void onTapButton() {}

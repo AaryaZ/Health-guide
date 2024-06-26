@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+Color dblue = const Color.fromARGB(255, 16, 49, 140);
+Color bgblue = const Color.fromARGB(253, 232, 234, 240);
+
 class O1 extends StatelessWidget {
   const O1({super.key});
 
@@ -8,7 +11,7 @@ class O1 extends StatelessWidget {
     var GlobalHeight = MediaQuery.of(context).size.height;
     // var GlobalWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Color.fromARGB(253, 232, 234, 240),
+      backgroundColor: bgblue,
       body: Column(
         children: [
           Padding(
