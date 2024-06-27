@@ -86,7 +86,7 @@ class NameScreen extends StatelessWidget {
                       // Navigate to LocationScreen.dart on button press
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => AgeScreen()),
+                        MaterialPageRoute(builder: (context) => LocationScreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(

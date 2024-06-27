@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'medical.dart';
 
 Color dblue = const Color.fromARGB(255, 16, 49, 140);
 Color bgblue = const Color.fromARGB(253, 232, 234, 240);
@@ -41,7 +42,7 @@ class _PacePageState extends State<PacePage> {
             Text(
               "We're so happy to have you here.",
               style: GoogleFonts.inter(
-                fontSize: GlobalHeight * 0.02,
+                fontSize: GlobalHeight * 0.017,
                 color: Colors.black54,
               ),
             ),
@@ -50,12 +51,12 @@ class _PacePageState extends State<PacePage> {
               maxLines: 2,
               'Which pacing suit you the best?',
               style: GoogleFonts.inter(
-                fontSize: GlobalHeight * 0.03,
+                fontSize: GlobalHeight * 0.02,
                 fontWeight: FontWeight.w600,
                 color: Color(0xFF10328C),
               ),
             ),
-            SizedBox(height: GlobalHeight * 0.06),
+            SizedBox(height: GlobalHeight * 0.01),
             buildRadioOption('0.25 Kg per week'),
             buildRadioOption('0.5 Kg per week'),
             buildRadioOption('0.75 Kg per week'),
@@ -70,7 +71,7 @@ class _PacePageState extends State<PacePage> {
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PacePage()));
+                      MaterialPageRoute(builder: (context) => MedicalConditionsScreen()));
                 },
                 child: Container(
                   width: GlobalWidth,
@@ -84,7 +85,7 @@ class _PacePageState extends State<PacePage> {
                     'Next',
                     style: GoogleFonts.inter(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 11,
                       fontWeight: FontWeight.w600,
                       fontStyle: FontStyle.normal,
                     ),

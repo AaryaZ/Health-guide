@@ -3,46 +3,60 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'age.dart';
 
-class GenderScreen extends StatelessWidget {
+class GenderScreen extends StatefulWidget {
+  @override
+  _GenderScreenState createState() => _GenderScreenState();
+}
+
+class _GenderScreenState extends State<GenderScreen> {
+  String selectedGender = '';
+
+  void selectGender(String gender) {
+    setState(() {
+      selectedGender = gender;
+    });
+  }
+
+  Widget genderCard(String gender, IconData icon) {
+    bool isSelected = selectedGender == gender;
+    return GestureDetector(
+      onTap: () {
+        selectGender(gender);
+      },
+      child: Card(
+        color: isSelected ? Color(0xFF10328C) : Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width * 0.025),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.07),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                icon,
+                size: MediaQuery.of(context).size.width * 0.1,
+                color: isSelected ? Colors.white : Color(0xFF10328C),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.width * 0.02),
+              Text(
+                gender,
+                style: GoogleFonts.inter(
+                  fontSize: MediaQuery.of(context).size.width * 0.045,
+                  fontWeight: FontWeight.w600,
+                  color: isSelected ? Colors.white : Color(0xFF10328C),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-
-    Widget genderCard(String gender, IconData icon) {
-      return GestureDetector(
-        onTap: () {
-          // Handle gender selection logic here
-        },
-        child: Card(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(screenWidth * 0.025),
-          ),
-          child: Padding(
-            padding: EdgeInsets.all(screenWidth * 0.05),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  icon,
-                  size: screenWidth * 0.1,
-                  color: Color(0xFF10328C),
-                ),
-                SizedBox(height: screenWidth * 0.02),
-                Text(
-                  gender,
-                  style: GoogleFonts.inter(
-                    fontSize: screenWidth * 0.045,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF10328C),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
-    }
 
     return Scaffold(
       backgroundColor: Color(0xFFE8EAF0),
@@ -99,7 +113,7 @@ class GenderScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => NameScreen()),
+                        MaterialPageRoute(builder: (context) => AgeScreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthguide/screens/registration/medical.dart';
+import 'gender.dart';
 
 Color dblue = const Color.fromARGB(255, 16, 49, 140);
 Color bgblue = const Color.fromARGB(253, 232, 234, 240);
@@ -54,11 +55,11 @@ class _LanguagePreferenceScreenState extends State<LanguagePreferenceScreen> {
                 color: Color(0xFF10328C),
               ),
             ),
-            SizedBox(height: GlobalWidth * 0.01),
+            SizedBox(height: GlobalWidth * 0.007),
             Text(
               "We’re happy you're here.",
               style: GoogleFonts.inter(
-                fontSize: GlobalHeight * 0.02,
+                fontSize: GlobalHeight * 0.015,
                 color: Colors.black54,
               ),
             ),
@@ -67,12 +68,12 @@ class _LanguagePreferenceScreenState extends State<LanguagePreferenceScreen> {
               maxLines: 2,
               'What is your language \npreference?',
               style: GoogleFonts.inter(
-                fontSize: GlobalHeight * 0.03,
+                fontSize: GlobalHeight * 0.02,
                 fontWeight: FontWeight.w600,
                 color: Color(0xFF10328C),
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 0),
             Expanded(
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -113,7 +114,7 @@ class _LanguagePreferenceScreenState extends State<LanguagePreferenceScreen> {
             ),
             Padding(
               padding: EdgeInsets.only(
-                  top: GlobalHeight * 0.07,
+                  top: GlobalHeight * 0.01,
                   bottom: GlobalHeight * 0.02,
                   right: GlobalWidth * 0.06,
                   left: GlobalWidth * 0.06),
@@ -122,7 +123,7 @@ class _LanguagePreferenceScreenState extends State<LanguagePreferenceScreen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => MedicalConditionsScreen()));
+                          builder: (context) => GenderScreen()));
                 },
                 child: Container(
                   width: GlobalWidth,
@@ -136,7 +137,7 @@ class _LanguagePreferenceScreenState extends State<LanguagePreferenceScreen> {
                     'Next',
                     style: GoogleFonts.inter(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 11,
                       fontWeight: FontWeight.w600,
                       fontStyle: FontStyle.normal,
                     ),

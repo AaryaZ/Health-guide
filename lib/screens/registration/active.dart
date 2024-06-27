@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthguide/screens/registration/pace.dart';
+import 'height.dart';
 
 Color dblue = const Color.fromARGB(255, 16, 49, 140);
 Color bgblue = const Color.fromARGB(253, 232, 234, 240);
@@ -38,11 +39,11 @@ class _ActivityLevelPageState extends State<ActivityLevelPage> {
                 color: Color(0xFF10328C),
               ),
             ),
-            SizedBox(height: GlobalWidth * 0.01),
+            SizedBox(height: GlobalWidth * 0.007),
             Text(
               "We're so happy to have you here.",
               style: GoogleFonts.inter(
-                fontSize: GlobalHeight * 0.02,
+                fontSize: GlobalHeight * 0.017,
                 color: Colors.black54,
               ),
             ),
@@ -51,7 +52,7 @@ class _ActivityLevelPageState extends State<ActivityLevelPage> {
               maxLines: 2,
               'How active are you?',
               style: GoogleFonts.inter(
-                fontSize: GlobalHeight * 0.03,
+                fontSize: GlobalHeight * 0.02,
                 fontWeight: FontWeight.w600,
                 color: Color(0xFF10328C),
               ),
@@ -59,11 +60,11 @@ class _ActivityLevelPageState extends State<ActivityLevelPage> {
             Text(
               "Tell us your honest answers, help us calculate important stats to help you curate plans.",
               style: GoogleFonts.inter(
-                fontSize: GlobalHeight * 0.015,
+                fontSize: GlobalHeight * 0.017,
                 color: Colors.black54,
               ),
             ),
-            SizedBox(height: GlobalHeight * 0.1),
+            SizedBox(height: GlobalHeight * 0.02),
             buildRadioOption('None to Little Activity'),
             buildRadioOption('Slightly Active'),
             buildRadioOption('Moderately Active'),
@@ -78,7 +79,7 @@ class _ActivityLevelPageState extends State<ActivityLevelPage> {
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PacePage()));
+                      MaterialPageRoute(builder: (context) => HeightScreen()));
                 },
                 child: Container(
                   width: GlobalWidth,
@@ -92,7 +93,7 @@ class _ActivityLevelPageState extends State<ActivityLevelPage> {
                     'Next',
                     style: GoogleFonts.inter(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 11,
                       fontWeight: FontWeight.w600,
                       fontStyle: FontStyle.normal,
                     ),
