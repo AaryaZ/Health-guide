@@ -202,7 +202,7 @@ class _CWeightScreenState extends State<CWeightScreen> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: LinearProgressIndicator(
-                        value: 0.3,
+                        value: 0.5,
                         backgroundColor: Colors.transparent,
                         valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
                       ),

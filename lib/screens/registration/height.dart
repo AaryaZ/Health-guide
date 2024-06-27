@@ -242,7 +242,7 @@ class _HeightScreenState extends State<HeightScreen> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: LinearProgressIndicator(
-                        value: 0.3,
+                        value: 0.44,
                         backgroundColor: Colors.transparent,
                         valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
                       ),

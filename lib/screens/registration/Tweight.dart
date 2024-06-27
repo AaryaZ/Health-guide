@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'permissions.dart';
 
 class TWeightScreen extends StatefulWidget {
   @override
@@ -165,10 +166,10 @@ class _TWeightScreenState extends State<TWeightScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      //   Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(builder: (context) => LocationScreen()),
-                      //   );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PermissionScreen()),
+                        );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF10328C),
@@ -201,7 +202,7 @@ class _TWeightScreenState extends State<TWeightScreen> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: LinearProgressIndicator(
-                        value: 0.3,
+                        value: 0.6,
                         backgroundColor: Colors.transparent,
                         valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
                       ),
