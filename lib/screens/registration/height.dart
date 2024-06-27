@@ -16,21 +16,30 @@ class _HeightScreenState extends State<HeightScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    double GlobalHeight = MediaQuery.of(context).size.height;
 
     List<String> feetList = List.generate(8, (index) => (index + 1).toString());
     List<String> inchesList = List.generate(12, (index) => index.toString());
-    List<String> cmList = List.generate(241, (index) => (index + 60).toString());
+    List<String> cmList =
+        List.generate(241, (index) => (index + 60).toString());
 
     return Scaffold(
       backgroundColor: Color(0xFFE8EAF0),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
+        padding: EdgeInsets.symmetric(
+            vertical: GlobalHeight * 0.07, horizontal: screenWidth * 0.05),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: screenWidth * 0.15),
+                Align(
+                    alignment: Alignment.topRight,
+                    child: GestureDetector(
+                      onTap: () => Navigator.of(context).pop(),
+                      child: const Icon(Icons.arrow_back_rounded),
+                    )),
+                // SizedBox(height: screenWidth * 0.15),
                 Text(
                   'Tell us more!',
                   style: GoogleFonts.inter(
@@ -62,9 +71,11 @@ class _HeightScreenState extends State<HeightScreen> {
                     children: [
                       Expanded(
                         child: Container(
-                          padding: EdgeInsets.symmetric(vertical: screenWidth * 0.01),
+                          padding: EdgeInsets.symmetric(
+                              vertical: screenWidth * 0.01),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(screenWidth * 0.025),
+                            borderRadius:
+                                BorderRadius.circular(screenWidth * 0.025),
                             color: Colors.white,
                           ),
                           child: DropdownButtonFormField<String>(
@@ -82,9 +93,11 @@ class _HeightScreenState extends State<HeightScreen> {
                             },
                             decoration: InputDecoration(
                               hintText: 'Feet',
-                              hintStyle: TextStyle(fontSize: screenWidth * 0.04),
+                              hintStyle:
+                                  TextStyle(fontSize: screenWidth * 0.04),
                               border: InputBorder.none,
-                              contentPadding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: screenWidth * 0.04),
                             ),
                             dropdownColor: Color(0xFFE8EAF0),
                           ),
@@ -93,9 +106,11 @@ class _HeightScreenState extends State<HeightScreen> {
                       SizedBox(width: screenWidth * 0.05),
                       Expanded(
                         child: Container(
-                          padding: EdgeInsets.symmetric(vertical: screenWidth * 0.01),
+                          padding: EdgeInsets.symmetric(
+                              vertical: screenWidth * 0.01),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(screenWidth * 0.025),
+                            borderRadius:
+                                BorderRadius.circular(screenWidth * 0.025),
                             color: Colors.white,
                           ),
                           child: DropdownButtonFormField<String>(
@@ -113,9 +128,11 @@ class _HeightScreenState extends State<HeightScreen> {
                             },
                             decoration: InputDecoration(
                               hintText: 'Inches',
-                              hintStyle: TextStyle(fontSize: screenWidth * 0.04),
+                              hintStyle:
+                                  TextStyle(fontSize: screenWidth * 0.04),
                               border: InputBorder.none,
-                              contentPadding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: screenWidth * 0.04),
                             ),
                             dropdownColor: Color(0xFFE8EAF0),
                           ),
@@ -147,7 +164,8 @@ class _HeightScreenState extends State<HeightScreen> {
                         hintText: 'Select Your Height (cm)',
                         hintStyle: TextStyle(fontSize: screenWidth * 0.04),
                         border: InputBorder.none,
-                        contentPadding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: screenWidth * 0.04),
                       ),
                       dropdownColor: Color(0xFFE8EAF0),
                     ),
@@ -155,52 +173,54 @@ class _HeightScreenState extends State<HeightScreen> {
                 ],
                 SizedBox(height: screenWidth * 0.05),
                 AnimatedSwitcher(
-  duration: Duration(milliseconds: 300),
-  transitionBuilder: (Widget child, Animation<double> animation) {
-    return SlideTransition(
-      position: Tween<Offset>(
-        begin: Offset(-1, 0),
-        end: Offset(0, 0),
-      ).animate(animation),
-      child: child,
-    );
-  },
-  child: Container(
-    key: ValueKey<bool>(isKg),
-    padding: EdgeInsets.symmetric(vertical: screenWidth * 0.01),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(screenWidth * 0.025),
-      color: Colors.white,
-    ),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
-          child: Text(
-            isKg ? 'Ft/inch' : 'cms',
-            style: TextStyle(
-              fontSize: screenWidth * 0.04,
-              color: Colors.black,
-            ),
-          ),
-        ),
-        Switch(
-          value: isKg,
-          onChanged: (bool value) {
-            setState(() {
-              isKg = value;
-            });
-          },
-          activeColor: Color(0xFF10328C),
-          inactiveThumbColor: Color(0xFF10328C),
-          inactiveTrackColor: Color(0xFF10328C).withOpacity(0.5),
-        ),
-      ],
-    ),
-  ),
-),
-
+                  duration: Duration(milliseconds: 300),
+                  transitionBuilder:
+                      (Widget child, Animation<double> animation) {
+                    return SlideTransition(
+                      position: Tween<Offset>(
+                        begin: Offset(-1, 0),
+                        end: Offset(0, 0),
+                      ).animate(animation),
+                      child: child,
+                    );
+                  },
+                  child: Container(
+                    key: ValueKey<bool>(isKg),
+                    padding: EdgeInsets.symmetric(vertical: screenWidth * 0.01),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(screenWidth * 0.025),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: screenWidth * 0.04),
+                          child: Text(
+                            isKg ? 'Ft/inch' : 'cms',
+                            style: TextStyle(
+                              fontSize: screenWidth * 0.04,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        Switch(
+                          value: isKg,
+                          onChanged: (bool value) {
+                            setState(() {
+                              isKg = value;
+                            });
+                          },
+                          activeColor: Color(0xFF10328C),
+                          inactiveThumbColor: Color(0xFF10328C),
+                          inactiveTrackColor:
+                              Color(0xFF10328C).withOpacity(0.5),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 SizedBox(height: screenWidth * 0.5),
                 SizedBox(
                   width: double.infinity,
@@ -208,14 +228,17 @@ class _HeightScreenState extends State<HeightScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => CWeightScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => CWeightScreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF10328C),
-                      padding: EdgeInsets.symmetric(vertical: screenWidth * 0.04),
+                      padding:
+                          EdgeInsets.symmetric(vertical: screenWidth * 0.04),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(screenWidth * 0.025),
+                        borderRadius:
+                            BorderRadius.circular(screenWidth * 0.025),
                       ),
                     ),
                     child: Text(
@@ -244,7 +267,8 @@ class _HeightScreenState extends State<HeightScreen> {
                       child: LinearProgressIndicator(
                         value: 0.3,
                         backgroundColor: Colors.transparent,
-                        valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
                       ),
                     ),
                   ),

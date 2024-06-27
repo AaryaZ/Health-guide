@@ -142,8 +142,6 @@ class _LoginState extends State<Login> {
                     right: GlobalWidth * 0.1,
                     left: GlobalWidth * 0.1),
                 child: GestureDetector(
-                  //if on last page
-                  // onLastPage?
                   onTap: () {
                     (phoneController.text.length > 9)
                         ? Navigator.push(
