@@ -99,7 +99,8 @@ class AgeScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ActivityLevelPage()),
+                        MaterialPageRoute(
+                            builder: (context) => ActivityLevelPage()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -135,7 +136,7 @@ class AgeScreen extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: LinearProgressIndicator(
-                        value: 0.3,
+                        value: 0.4,
                         backgroundColor: Colors.transparent,
                         valueColor:
                             AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),

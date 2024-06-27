@@ -1,12 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'language.dart';
-
-
 
 class LocationScreen extends StatefulWidget {
   @override
@@ -69,19 +66,26 @@ class _LocationScreenState extends State<LocationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-
+    var screenWidth = MediaQuery.of(context).size.width;
+    var GlobalHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: Color(0xFFE8EAF0),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
+        padding: EdgeInsets.symmetric(
+            vertical: GlobalHeight * 0.07, horizontal: screenWidth * 0.05),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: screenWidth * 0.15),
+                Align(
+                    alignment: Alignment.topRight,
+                    child: GestureDetector(
+                      onTap: () => Navigator.of(context).pop(),
+                      child: const Icon(Icons.arrow_back_rounded),
+                    )),
+                SizedBox(height: GlobalHeight * 0.02),
                 Text(
                   'Tell us more!',
                   style: GoogleFonts.inter(
@@ -130,9 +134,8 @@ class _LocationScreenState extends State<LocationScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-
-                        MaterialPageRoute(builder: (context) => LanguagePreferenceScreen()),
-
+                        MaterialPageRoute(
+                            builder: (context) => LanguagePreferenceScreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -168,7 +171,7 @@ class _LocationScreenState extends State<LocationScreen> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: LinearProgressIndicator(
-                        value: 0.2,
+                        value: 0.1,
                         backgroundColor: Colors.transparent,
                         valueColor:
                             AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
@@ -185,4 +188,3 @@ class _LocationScreenState extends State<LocationScreen> {
     );
   }
 }
-

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'pace.dart';
-import 'package:healthguide/screens/registration/language.dart';
-
 
 class TWeightScreen extends StatefulWidget {
   @override
@@ -24,20 +22,16 @@ class _TWeightScreenState extends State<TWeightScreen> {
     List<String> lbsList =
         List.generate(500, (index) => (index + 1).toString());
 
-
     return Scaffold(
       backgroundColor: Color(0xFFE8EAF0),
       body: Padding(
-
         padding: EdgeInsets.symmetric(
             vertical: GlobalHeight * 0.07, horizontal: screenWidth * 0.05),
-
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Align(
                     alignment: Alignment.topRight,
                     child: GestureDetector(
@@ -96,9 +90,8 @@ class _TWeightScreenState extends State<TWeightScreen> {
                         hintText: 'Select Your Weight (kg)',
                         hintStyle: TextStyle(fontSize: screenWidth * 0.04),
                         border: InputBorder.none,
-
-                        contentPadding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
-
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: screenWidth * 0.04),
                       ),
                       dropdownColor: Color(0xFFE8EAF0),
                     ),
@@ -127,9 +120,8 @@ class _TWeightScreenState extends State<TWeightScreen> {
                         hintText: 'Select Your Weight (lbs)',
                         hintStyle: TextStyle(fontSize: screenWidth * 0.04),
                         border: InputBorder.none,
-
-                        contentPadding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
-
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: screenWidth * 0.04),
                       ),
                       dropdownColor: Color(0xFFE8EAF0),
                     ),
@@ -138,9 +130,8 @@ class _TWeightScreenState extends State<TWeightScreen> {
                 SizedBox(height: screenWidth * 0.05),
                 AnimatedSwitcher(
                   duration: Duration(milliseconds: 300),
-
-                  transitionBuilder: (Widget child, Animation<double> animation) {
-
+                  transitionBuilder:
+                      (Widget child, Animation<double> animation) {
                     return SlideTransition(
                       position: Tween<Offset>(
                         begin: Offset(-1, 0),
@@ -160,9 +151,8 @@ class _TWeightScreenState extends State<TWeightScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-
-                          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
-
+                          padding: EdgeInsets.symmetric(
+                              horizontal: screenWidth * 0.04),
                           child: Text(
                             isKg ? 'Kg' : 'Lbs',
                             style: TextStyle(
@@ -180,9 +170,8 @@ class _TWeightScreenState extends State<TWeightScreen> {
                           },
                           activeColor: Color(0xFF10328C),
                           inactiveThumbColor: Color(0xFF10328C),
-
-                          inactiveTrackColor: Color(0xFF10328C).withOpacity(0.5),
-
+                          inactiveTrackColor:
+                              Color(0xFF10328C).withOpacity(0.5),
                         ),
                       ],
                     ),
@@ -193,21 +182,18 @@ class _TWeightScreenState extends State<TWeightScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-
-                        Navigator.push(
-                          context,
-
-                          MaterialPageRoute(builder: (context) => PacePage()),
-
-                        );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => PacePage()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF10328C),
-                      padding: EdgeInsets.symmetric(vertical: screenWidth * 0.04),
+                      padding:
+                          EdgeInsets.symmetric(vertical: screenWidth * 0.04),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(screenWidth * 0.025),
-
-
+                        borderRadius:
+                            BorderRadius.circular(screenWidth * 0.025),
                       ),
                     ),
                     child: Text(
@@ -220,7 +206,7 @@ class _TWeightScreenState extends State<TWeightScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: screenWidth * 0.5),
+                SizedBox(height: screenWidth * 0.2),
                 Container(
                   padding: EdgeInsets.only(bottom: screenWidth * 0.05),
                   alignment: Alignment.bottomCenter,
@@ -234,11 +220,10 @@ class _TWeightScreenState extends State<TWeightScreen> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: LinearProgressIndicator(
-
-                        value: 0.6,
+                        value: 0.8,
                         backgroundColor: Colors.transparent,
-                        valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
-
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
                       ),
                     ),
                   ),

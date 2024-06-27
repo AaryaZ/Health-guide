@@ -18,7 +18,7 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   String? otpCode;
-  int? otplength;
+  int otplength = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -117,10 +117,9 @@ class _OtpScreenState extends State<OtpScreen> {
                       textStyle: const TextStyle(
                           fontSize: 20, fontWeight: FontWeight.w600),
                     ),
-                    onSubmitted: (value) {
+                    onChanged: (value) {
                       setState(() {
                         otpCode = value;
-                        print('otpcode = ${otpCode}');
                       });
                     },
                   ),
@@ -135,19 +134,19 @@ class _OtpScreenState extends State<OtpScreen> {
                     ),
                     child: GestureDetector(
                       onTap: () {
-                        if ((otpCode != null) || (otplength != 6)) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBarHG(
-                                  title: "Oops!",
-                                  text:
-                                      "Invalid OTP.Please check and try again.")
-                              .show());
-                        } else {
+                        if ((otpCode != null) && (otpCode!.length == 6)) {
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => NameScreen()),
                             (route) => false,
                           );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBarHG(
+                                  title: "Oops!",
+                                  text:
+                                      "Invalid OTP.Please check and try again.")
+                              .show());
                         }
                       },
                       child: Container(

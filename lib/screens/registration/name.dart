@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthguide/screens/registration/age.dart';
 import 'location.dart';
 
 class NameScreen extends StatelessWidget {
@@ -86,7 +85,8 @@ class NameScreen extends StatelessWidget {
                       // Navigate to LocationScreen.dart on button press
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LocationScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => LocationScreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -128,7 +128,7 @@ class NameScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(
                           10), // Clip content to rounded borders
                       child: LinearProgressIndicator(
-                        value: 0.1,
+                        value: 0.02,
                         backgroundColor: Colors
                             .transparent, // Transparent background for rounded corners
                         valueColor:

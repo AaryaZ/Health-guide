@@ -26,7 +26,8 @@ class _GenderScreenState extends State<GenderScreen> {
       child: Card(
         color: isSelected ? Color(0xFF10328C) : Colors.white,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width * 0.025),
+          borderRadius:
+              BorderRadius.circular(MediaQuery.of(context).size.width * 0.025),
         ),
         child: Padding(
           padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.07),
@@ -57,18 +58,23 @@ class _GenderScreenState extends State<GenderScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-
+    // double GlobalHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: Color(0xFFE8EAF0),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: screenWidth * 0.15),
+                Align(
+                    alignment: Alignment.topRight,
+                    child: GestureDetector(
+                      onTap: () => Navigator.of(context).pop(),
+                      child: const Icon(Icons.arrow_back_rounded),
+                    )),
                 Text(
                   'Tell us more!',
                   style: GoogleFonts.inter(
@@ -104,9 +110,7 @@ class _GenderScreenState extends State<GenderScreen> {
                     genderCard('Male', FontAwesomeIcons.mars),
                     genderCard('Female', FontAwesomeIcons.venus),
                     genderCard('Transgender', FontAwesomeIcons.transgender),
-
                     genderCard('Others', FontAwesomeIcons.ellipsisH),
-
                   ],
                 ),
                 SizedBox(height: screenWidth * 0.2),
@@ -116,18 +120,16 @@ class _GenderScreenState extends State<GenderScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-
                         MaterialPageRoute(builder: (context) => AgeScreen()),
-
                       );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF10328C),
-
-                      padding: EdgeInsets.symmetric(vertical: screenWidth * 0.04),
+                      padding:
+                          EdgeInsets.symmetric(vertical: screenWidth * 0.04),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(screenWidth * 0.025),
-
+                        borderRadius:
+                            BorderRadius.circular(screenWidth * 0.025),
                       ),
                     ),
                     child: Text(
@@ -154,11 +156,11 @@ class _GenderScreenState extends State<GenderScreen> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: LinearProgressIndicator(
-                        value: 0.4, // Adjusted progress value
+                        value: 0.3, // Adjusted progress value
                         backgroundColor: Colors.transparent,
 
-                        valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
-
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
                       ),
                     ),
                   ),
