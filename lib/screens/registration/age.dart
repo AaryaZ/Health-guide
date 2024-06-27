@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'location.dart';
+import 'height.dart';
 
 class NameScreen extends StatelessWidget {
   @override
@@ -80,7 +80,7 @@ class NameScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LocationScreen()),
+                        MaterialPageRoute(builder: (context) => HeightScreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
