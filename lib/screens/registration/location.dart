@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'gender.dart';
+import 'language.dart';
+
 
 
 class LocationScreen extends StatefulWidget {
@@ -129,7 +130,9 @@ class _LocationScreenState extends State<LocationScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => GenderScreen()),
+
+                        MaterialPageRoute(builder: (context) => LanguagePreferenceScreen()),
+
                       );
                     },
                     style: ElevatedButton.styleFrom(

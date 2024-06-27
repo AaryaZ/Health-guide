@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthguide/screens/registration/active.dart';
+import 'permissions.dart';
 
 Color dblue = const Color.fromARGB(255, 16, 49, 140);
 Color bgblue = const Color.fromARGB(253, 232, 234, 240);
@@ -53,11 +54,11 @@ class _MedicalConditionsScreenState extends State<MedicalConditionsScreen> {
                 color: Color(0xFF10328C),
               ),
             ),
-            SizedBox(height: GlobalWidth * 0.01),
+            SizedBox(height: GlobalWidth * 0.005),
             Text(
               "We're so happy to have you here.",
               style: GoogleFonts.inter(
-                fontSize: GlobalHeight * 0.02,
+                fontSize: GlobalHeight * 0.017,
                 color: Colors.black54,
               ),
             ),
@@ -66,12 +67,12 @@ class _MedicalConditionsScreenState extends State<MedicalConditionsScreen> {
               maxLines: 2,
               'Any Medication conditions we need to be aware of?',
               style: GoogleFonts.inter(
-                fontSize: GlobalHeight * 0.03,
+                fontSize: GlobalHeight * 0.02,
                 fontWeight: FontWeight.w600,
                 color: Color(0xFF10328C),
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 0),
             Expanded(
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -95,7 +96,7 @@ class _MedicalConditionsScreenState extends State<MedicalConditionsScreen> {
                       title: Text(
                         conditions[index],
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 11,
                           fontWeight: FontWeight.w500,
                           color: selected[index] ? dblue : Colors.black,
                         ),
@@ -129,7 +130,7 @@ class _MedicalConditionsScreenState extends State<MedicalConditionsScreen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ActivityLevelPage()));
+                          builder: (context) => PermissionScreen()));
                 },
                 child: Container(
                   width: GlobalWidth,
@@ -143,7 +144,7 @@ class _MedicalConditionsScreenState extends State<MedicalConditionsScreen> {
                     'Next',
                     style: GoogleFonts.inter(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 11,
                       fontWeight: FontWeight.w600,
                       fontStyle: FontStyle.normal,
                     ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'permissions.dart';
+import 'pace.dart';
 import 'package:healthguide/screens/registration/language.dart';
 
 
@@ -196,7 +196,9 @@ class _TWeightScreenState extends State<TWeightScreen> {
 
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => PermissionScreen()),
+
+                          MaterialPageRoute(builder: (context) => PacePage()),
+
                         );
                     },
                     style: ElevatedButton.styleFrom(
