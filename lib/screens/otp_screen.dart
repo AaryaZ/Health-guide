@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthguide/screens/registration/name.dart';
+import 'package:healthguide/utils/snack_bar.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pinput/pinput.dart';
 
@@ -17,6 +18,7 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   String? otpCode;
+  int? otplength;
 
   @override
   Widget build(BuildContext context) {
@@ -133,8 +135,12 @@ class _OtpScreenState extends State<OtpScreen> {
                     ),
                     child: GestureDetector(
                       onTap: () {
-                        if (otpCode != null) {
-                          print("invlid otp");
+                        if ((otpCode != null) || (otplength != 6)) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBarHG(
+                                  title: "Oops!",
+                                  text:
+                                      "Invalid OTP.Please check and try again.")
+                              .show());
                         } else {
                           Navigator.pushAndRemoveUntil(
                             context,

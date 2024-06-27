@@ -149,9 +149,11 @@ class _LoginState extends State<Login> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => OtpScreen()))
-                        : ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBarHG(title: "Hello", text: "Hello again")
-                                .show());
+                        : ScaffoldMessenger.of(context).showSnackBar(SnackBarHG(
+                                title: "Something went wrong!",
+                                text:
+                                    "Please enter a Valid 10-digit phone number.")
+                            .show());
                   },
                   child: Container(
                     width: GlobalWidth,

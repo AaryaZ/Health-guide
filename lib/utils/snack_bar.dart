@@ -28,14 +28,14 @@ class SnackBarHG {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Something went wrong!",
+                        title,
                         style: GoogleFonts.inter(
                             fontSize: 16,
                             color: Colors.red,
                             fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        "Please enter a Valid 10-digit phone number.",
+                        text,
                         style: GoogleFonts.inter(
                             fontSize: 14,
                             color: Colors.red,
