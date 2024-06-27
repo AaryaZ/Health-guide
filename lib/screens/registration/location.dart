@@ -1,9 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'gender.dart';
+
 
 class LocationScreen extends StatefulWidget {
   @override
@@ -67,6 +69,7 @@ class _LocationScreenState extends State<LocationScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+
 
     return Scaffold(
       backgroundColor: Color(0xFFE8EAF0),
@@ -179,3 +182,4 @@ class _LocationScreenState extends State<LocationScreen> {
     );
   }
 }
+
