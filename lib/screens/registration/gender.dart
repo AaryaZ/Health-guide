@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:healthguide/screens/registration/name.dart';
 import 'age.dart';
 
 class GenderScreen extends StatelessWidget {
@@ -89,7 +90,7 @@ class GenderScreen extends StatelessWidget {
                     genderCard('Male', FontAwesomeIcons.mars),
                     genderCard('Female', FontAwesomeIcons.venus),
                     genderCard('Transgender', FontAwesomeIcons.transgender),
-                    genderCard('Others', FontAwesomeIcons.ellipsisH),
+                    genderCard('Others', FontAwesomeIcons.ellipsis),
                   ],
                 ),
                 SizedBox(height: screenWidth * 0.2),
@@ -104,9 +105,11 @@ class GenderScreen extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF10328C),
-                      padding: EdgeInsets.symmetric(vertical: screenWidth * 0.04),
+                      padding:
+                          EdgeInsets.symmetric(vertical: screenWidth * 0.04),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(screenWidth * 0.025),
+                        borderRadius:
+                            BorderRadius.circular(screenWidth * 0.025),
                       ),
                     ),
                     child: Text(
@@ -135,7 +138,8 @@ class GenderScreen extends StatelessWidget {
                       child: LinearProgressIndicator(
                         value: 0.4, // Adjusted progress value
                         backgroundColor: Colors.transparent,
-                        valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
                       ),
                     ),
                   ),
