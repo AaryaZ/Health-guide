@@ -196,7 +196,9 @@ class _TWeightScreenState extends State<TWeightScreen> {
 
                         Navigator.push(
                           context,
+
                           MaterialPageRoute(builder: (context) => PacePage()),
+
                         );
                     },
                     style: ElevatedButton.styleFrom(

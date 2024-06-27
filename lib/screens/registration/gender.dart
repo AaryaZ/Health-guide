@@ -58,6 +58,7 @@ class _GenderScreenState extends State<GenderScreen> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
 
+
     return Scaffold(
       backgroundColor: Color(0xFFE8EAF0),
       body: Padding(
@@ -103,7 +104,9 @@ class _GenderScreenState extends State<GenderScreen> {
                     genderCard('Male', FontAwesomeIcons.mars),
                     genderCard('Female', FontAwesomeIcons.venus),
                     genderCard('Transgender', FontAwesomeIcons.transgender),
+
                     genderCard('Others', FontAwesomeIcons.ellipsisH),
+
                   ],
                 ),
                 SizedBox(height: screenWidth * 0.2),
@@ -113,14 +116,18 @@ class _GenderScreenState extends State<GenderScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
+
                         MaterialPageRoute(builder: (context) => AgeScreen()),
+
                       );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF10328C),
+
                       padding: EdgeInsets.symmetric(vertical: screenWidth * 0.04),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(screenWidth * 0.025),
+
                       ),
                     ),
                     child: Text(
@@ -149,7 +156,9 @@ class _GenderScreenState extends State<GenderScreen> {
                       child: LinearProgressIndicator(
                         value: 0.4, // Adjusted progress value
                         backgroundColor: Colors.transparent,
+
                         valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
+
                       ),
                     ),
                   ),

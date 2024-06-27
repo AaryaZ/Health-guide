@@ -7,6 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'language.dart';
 
 
+
 class LocationScreen extends StatefulWidget {
   @override
   _LocationScreenState createState() => _LocationScreenState();
@@ -129,7 +130,9 @@ class _LocationScreenState extends State<LocationScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
+
                         MaterialPageRoute(builder: (context) => LanguagePreferenceScreen()),
+
                       );
                     },
                     style: ElevatedButton.styleFrom(

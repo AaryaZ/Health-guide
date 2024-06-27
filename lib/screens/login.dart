@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:healthguide/screens/otp_screen.dart';
+import 'package:healthguide/utils/snack_bar.dart';
 import 'package:lottie/lottie.dart';
 
 Color dblue = const Color.fromARGB(255, 16, 49, 140);
@@ -108,7 +109,7 @@ class _LoginState extends State<Login> {
                       },
                       child: Text(
                         "${selectedCountry.flagEmoji} + ${selectedCountry.phoneCode}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 18,
                             color: Colors.black,
                             fontWeight: FontWeight.bold),
@@ -148,7 +149,11 @@ class _LoginState extends State<Login> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => OtpScreen()))
-                        : null;
+                        : ScaffoldMessenger.of(context).showSnackBar(SnackBarHG(
+                                title: "Something went wrong!",
+                                text:
+                                    "Please enter a Valid 10-digit phone number.")
+                            .show());
                   },
                   child: Container(
                     width: GlobalWidth,
