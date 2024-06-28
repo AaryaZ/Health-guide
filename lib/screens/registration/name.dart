@@ -7,6 +7,7 @@ class NameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // Get screen width
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: Color(0xFFE8EAF0),
@@ -76,8 +77,8 @@ class NameScreen extends StatelessWidget {
                 ),
 
                 SizedBox(
-                    height: screenWidth *
-                        0.5), // 8% of screen width as vertical spacing
+                    height: screenHeight *
+                        0.46), // 8% of screen width as vertical spacing
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -111,10 +112,10 @@ class NameScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                    height: screenWidth *
-                        0.5), // 5% of screen width as vertical spacing
+                    height: screenHeight *
+                        0.05), // 5% of screen width as vertical spacing
                 Container(
-                  padding: EdgeInsets.only(bottom: screenWidth * 0.05),
+                  padding: EdgeInsets.only(bottom: screenWidth * 0.09),
                   alignment: Alignment.bottomCenter,
                   child: Container(
                     height: screenWidth * 0.015, // Increase height by 2 pixels
@@ -122,7 +123,7 @@ class NameScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius:
                           BorderRadius.circular(10), // Rounded border radius
-                      color: Colors.grey.shade300, // Background color
+                      color: Colors.grey.shade400, // Background color
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(

@@ -58,12 +58,13 @@ class _GenderScreenState extends State<GenderScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    // double GlobalHeight = MediaQuery.of(context).size.height;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: Color(0xFFE8EAF0),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+        padding: EdgeInsets.symmetric(
+            vertical: screenHeight * 0.04, horizontal: screenWidth * 0.05),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
@@ -75,6 +76,7 @@ class _GenderScreenState extends State<GenderScreen> {
                       onTap: () => Navigator.of(context).pop(),
                       child: const Icon(Icons.arrow_back_rounded),
                     )),
+                SizedBox(height: screenHeight * 0.02),
                 Text(
                   'Tell us more!',
                   style: GoogleFonts.inter(
@@ -100,7 +102,6 @@ class _GenderScreenState extends State<GenderScreen> {
                     color: Color(0xFF10328C),
                   ),
                 ),
-                SizedBox(height: 0),
                 GridView.count(
                   shrinkWrap: true,
                   crossAxisCount: 2,
@@ -113,7 +114,7 @@ class _GenderScreenState extends State<GenderScreen> {
                     genderCard('Others', FontAwesomeIcons.ellipsisH),
                   ],
                 ),
-                SizedBox(height: screenWidth * 0.2),
+                SizedBox(height: screenWidth * 0.15),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -151,7 +152,7 @@ class _GenderScreenState extends State<GenderScreen> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey.shade300,
+                      color: Colors.grey.shade400,
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),

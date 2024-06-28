@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthguide/screens/registration/name.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'location.dart';
 
@@ -62,47 +63,63 @@ class _PermissionScreenState extends State<PermissionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Get screen width
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: Color(0xFFE8EAF0),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06), // 5% of screen width as horizontal padding
+        padding: EdgeInsets.symmetric(
+            vertical: screenHeight * 0.04,
+            horizontal:
+                screenWidth * 0.05), // 5% of screen width as horizontal padding
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: screenWidth * 0.15), // 10% of screen width as top margin
+                SizedBox(
+                    height:
+                        screenWidth * 0.1), // 10% of screen width as top margin
                 Text(
                   "You're Almost there!",
                   style: GoogleFonts.inter(
-                    fontSize: screenWidth * 0.06, // 6% of screen width as font size
+                    fontSize:
+                        screenWidth * 0.06, // 6% of screen width as font size
                     fontWeight: FontWeight.w600,
                     color: Color(0xFF10328C),
                   ),
                 ),
-                SizedBox(height: screenWidth * 0.01), // 2% of screen width as vertical spacing
+                SizedBox(
+                    height: screenWidth *
+                        0.01), // 2% of screen width as vertical spacing
                 Text(
                   "We’re so happy you're here.",
                   style: GoogleFonts.inter(
-                    fontSize: screenWidth * 0.028, // 4% of screen width as font size
+                    fontSize:
+                        screenWidth * 0.028, // 4% of screen width as font size
                     color: Colors.black54,
                   ),
                 ),
-                SizedBox(height: screenWidth * 0.1), // 8% of screen width as vertical spacing
+                SizedBox(
+                    height: screenWidth *
+                        0.1), // 8% of screen width as vertical spacing
                 Text(
                   'Permissions',
                   style: GoogleFonts.inter(
-                    fontSize: screenWidth * 0.045, // 4.5% of screen width as font size
+                    fontSize: screenWidth *
+                        0.045, // 4.5% of screen width as font size
                     fontWeight: FontWeight.w600,
                     color: Color(0xFF10328C),
                   ),
                 ),
-                SizedBox(height: screenWidth * 0.02), // 2% of screen width as vertical spacing
+                SizedBox(
+                    height: screenWidth *
+                        0.02), // 2% of screen width as vertical spacing
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04), // 4% of screen width as horizontal padding
+                  padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth *
+                          0.04), // 4% of screen width as horizontal padding
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(screenWidth * 0.025),
@@ -131,9 +148,13 @@ class _PermissionScreenState extends State<PermissionScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height: screenWidth * 0.02), // 2% of screen width as vertical spacing
+                SizedBox(
+                    height: screenWidth *
+                        0.02), // 2% of screen width as vertical spacing
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04), // 4% of screen width as horizontal padding
+                  padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth *
+                          0.04), // 4% of screen width as horizontal padding
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(screenWidth * 0.025),
@@ -161,55 +182,60 @@ class _PermissionScreenState extends State<PermissionScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height: screenWidth * 0.5), // 8% of screen width as vertical spacing
+                SizedBox(height: screenHeight * 0.42),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LocationScreen()),
+                        MaterialPageRoute(builder: (context) => NameScreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF10328C),
-                      padding: EdgeInsets.symmetric(vertical: screenWidth * 0.04), // 4% of screen width as vertical padding
+                      padding: EdgeInsets.symmetric(
+                          vertical: screenWidth *
+                              0.04), // 4% of screen width as vertical padding
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(screenWidth * 0.025), // 2.5% of screen width as border radius
+                        borderRadius: BorderRadius.circular(screenWidth *
+                            0.025), // 2.5% of screen width as border radius
                       ),
                     ),
                     child: Text(
                       'Next',
                       style: GoogleFonts.inter(
-                        fontSize: screenWidth * 0.04, // 4.5% of screen width as font size
+                        fontSize: screenWidth *
+                            0.04, // 4.5% of screen width as font size
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: screenWidth * 0.5), // 5% of screen width as vertical spacing
+                SizedBox(height: screenHeight * 0.05),
                 Container(
-                  padding: EdgeInsets.only(bottom: screenWidth * 0.05),
+                  padding: EdgeInsets.only(bottom: screenWidth * 0.09),
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                    height: screenWidth * 0.015, // Increase height by 2 pixels
-                    width: double.infinity, // Take full width of the screen
+                    height: screenWidth * 0.015,
+                    width: double.infinity,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10), // Rounded border radius
-                      color: Colors.grey.shade300, // Background color
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.grey.shade400,
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10), // Clip content to rounded borders
+                      borderRadius: BorderRadius.circular(10),
                       child: LinearProgressIndicator(
-                        value: 1,
-                        backgroundColor: Colors.transparent, // Transparent background for rounded corners
-                        valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
+                        value: 0.99,
+                        backgroundColor: Colors.transparent,
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: screenWidth * 0.05), // 5% of screen width as bottom margin
+                SizedBox(height: screenWidth * 0.05),
               ],
             ),
           ),

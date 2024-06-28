@@ -29,13 +29,13 @@ class _MedicalConditionsScreenState extends State<MedicalConditionsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var GlobalHeight = MediaQuery.of(context).size.height;
-    var GlobalWidth = MediaQuery.of(context).size.width;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: bgblue,
       body: Padding(
         padding: EdgeInsets.symmetric(
-            vertical: GlobalHeight * 0.07, horizontal: GlobalWidth * 0.05),
+            vertical: screenHeight * 0.04, horizontal: screenWidth * 0.05),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -45,33 +45,33 @@ class _MedicalConditionsScreenState extends State<MedicalConditionsScreen> {
                   onTap: () => Navigator.of(context).pop(),
                   child: const Icon(Icons.arrow_back_rounded),
                 )),
+            SizedBox(height: screenHeight * 0.02),
             Text(
               'You’re Almost there!',
               style: GoogleFonts.inter(
-                fontSize: GlobalHeight * 0.03,
+                fontSize: screenWidth * 0.06,
                 fontWeight: FontWeight.w600,
                 color: Color(0xFF10328C),
               ),
             ),
-            SizedBox(height: GlobalWidth * 0.005),
+            SizedBox(height: screenWidth * 0.01),
             Text(
               "We're so happy to have you here.",
               style: GoogleFonts.inter(
-                fontSize: GlobalHeight * 0.017,
+                fontSize: screenWidth * 0.028,
                 color: Colors.black54,
               ),
             ),
-            SizedBox(height: GlobalHeight * 0.06),
+            SizedBox(height: screenWidth * 0.1),
             Text(
               maxLines: 2,
               'Any Medication conditions we need to be aware of?',
               style: GoogleFonts.inter(
-                fontSize: GlobalHeight * 0.02,
+                fontSize: screenWidth * 0.045,
                 fontWeight: FontWeight.w600,
                 color: Color(0xFF10328C),
               ),
             ),
-            SizedBox(height: 0),
             Expanded(
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -118,7 +118,6 @@ class _MedicalConditionsScreenState extends State<MedicalConditionsScreen> {
                 },
               ),
             ),
-            SizedBox(height: GlobalWidth * 0.2),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -130,45 +129,47 @@ class _MedicalConditionsScreenState extends State<MedicalConditionsScreen> {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF10328C),
-                  padding: EdgeInsets.symmetric(vertical: GlobalWidth * 0.04),
+                  padding: EdgeInsets.symmetric(
+                      vertical: screenWidth *
+                          0.04), // 4% of screen width as vertical padding
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(GlobalWidth * 0.025),
+                    borderRadius: BorderRadius.circular(screenWidth *
+                        0.025), // 2.5% of screen width as border radius
                   ),
                 ),
                 child: Text(
                   'Next',
                   style: GoogleFonts.inter(
-                    fontSize: GlobalWidth * 0.04,
+                    fontSize:
+                        screenWidth * 0.04, // 4.5% of screen width as font size
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
             ),
-            SizedBox(height: GlobalWidth * 0.1),
+            SizedBox(height: screenHeight * 0.05),
             Container(
-              padding: EdgeInsets.only(bottom: GlobalWidth * 0.05),
+              padding: EdgeInsets.only(bottom: screenWidth * 0.09),
               alignment: Alignment.bottomCenter,
               child: Container(
-                height: GlobalWidth * 0.015,
+                height: screenWidth * 0.015,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.grey.shade500,
+                  color: Colors.grey.shade400,
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: LinearProgressIndicator(
-                    value: 0.95, // Adjusted progress value
+                    value: 0.96,
                     backgroundColor: Colors.transparent,
-
                     valueColor:
                         AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: GlobalWidth * 0.05),
           ],
         ),
       ),

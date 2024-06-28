@@ -16,8 +16,7 @@ class _HeightScreenState extends State<HeightScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-
-    double GlobalHeight = MediaQuery.of(context).size.height;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     List<String> feetList = List.generate(8, (index) => (index + 1).toString());
     List<String> inchesList = List.generate(12, (index) => index.toString());
@@ -28,7 +27,7 @@ class _HeightScreenState extends State<HeightScreen> {
       backgroundColor: Color(0xFFE8EAF0),
       body: Padding(
         padding: EdgeInsets.symmetric(
-            vertical: GlobalHeight * 0.07, horizontal: screenWidth * 0.05),
+            vertical: screenHeight * 0.04, horizontal: screenWidth * 0.05),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
@@ -40,8 +39,7 @@ class _HeightScreenState extends State<HeightScreen> {
                       onTap: () => Navigator.of(context).pop(),
                       child: const Icon(Icons.arrow_back_rounded),
                     )),
-                // SizedBox(height: screenWidth * 0.15),
-
+                SizedBox(height: screenHeight * 0.02),
                 Text(
                   'Tell us more!',
                   style: GoogleFonts.inter(
@@ -67,7 +65,7 @@ class _HeightScreenState extends State<HeightScreen> {
                     color: Color(0xFF10328C),
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: screenWidth * 0.02),
                 if (isKg) ...[
                   Row(
                     children: [
@@ -223,7 +221,7 @@ class _HeightScreenState extends State<HeightScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: screenWidth * 0.3),
+                SizedBox(height: screenHeight * 0.39),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -236,47 +234,48 @@ class _HeightScreenState extends State<HeightScreen> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF10328C),
-                      padding:
-                          EdgeInsets.symmetric(vertical: screenWidth * 0.04),
+                      padding: EdgeInsets.symmetric(
+                          vertical: screenWidth *
+                              0.04), // 4% of screen width as vertical padding
                       shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(screenWidth * 0.025),
+                        borderRadius: BorderRadius.circular(screenWidth *
+                            0.025), // 2.5% of screen width as border radius
                       ),
                     ),
                     child: Text(
                       'Next',
                       style: GoogleFonts.inter(
-                        fontSize: screenWidth * 0.04,
+                        fontSize: screenWidth *
+                            0.04, // 4.5% of screen width as font size
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: screenWidth * 0.2),
+                SizedBox(height: screenHeight * 0.05),
                 Container(
-                  padding: EdgeInsets.only(bottom: screenWidth * 0.05),
+                  padding: EdgeInsets.only(bottom: screenWidth * 0.09),
                   alignment: Alignment.bottomCenter,
                   child: Container(
                     height: screenWidth * 0.015,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey.shade300,
+                      color: Colors.grey.shade400,
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: LinearProgressIndicator(
-                        value: 0.7, // Adjusted progress value
+                        value: 0.6,
                         backgroundColor: Colors.transparent,
-
                         valueColor:
                             AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
                       ),
                     ),
                   ),
                 ),
-                // SizedBox(height: screenWidth * 0.05),
+                SizedBox(height: screenWidth * 0.05),
               ],
             ),
           ),
