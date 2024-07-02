@@ -41,17 +41,34 @@ class _LoginState extends State<Login> {
           child: Center(
         child: Padding(
           padding: EdgeInsets.symmetric(
-              vertical: GlobalHeight * 0.07, horizontal: GlobalWidth * 0.1),
+              vertical: GlobalHeight * 0.06, horizontal: GlobalWidth * 0.1),
           child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  top: GlobalHeight * 0.1,
+              Container(
+                width: GlobalWidth * 0.4,
+                height: GlobalHeight * 0.4,
+                decoration: const BoxDecoration(
+                  // backgroundBlendMode: BlendMode.colorDodge,
+                  shape: BoxShape.circle,
+                  color: const Color.fromARGB(253, 232, 234, 240),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Color.fromRGBO(197, 194, 194, 1),
+                        // color: Color(0xFFADBFF0),
+                        offset: const Offset(4.0, 4.0),
+                        blurRadius: 15.0,
+                        spreadRadius: 1.0),
+                    const BoxShadow(
+                        color: Colors.white,
+                        offset: Offset(-4.0, -4.0),
+                        blurRadius: 15.0,
+                        spreadRadius: 1.0)
+                  ],
                 ),
                 child: Lottie.network(
-                    'https://lottie.host/b6550c7e-1a07-439e-b1e8-d3786224d2d9/piuulB6mAJ.json',
-                    fit: BoxFit.fitWidth,
-                    repeat: true),
+                    'https://lottie.host/692cc967-986c-4e75-b054-afc3f544f2f0/js70zXx5MS.json',
+                    repeat: true,
+                    fit: BoxFit.contain),
               ),
               // SizedBox(height: GlobalHeight * 0.03),
               FittedBox(

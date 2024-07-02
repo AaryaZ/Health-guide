@@ -1,3 +1,4 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,7 +31,7 @@ class _OtpScreenState extends State<OtpScreen> {
           child: Center(
             child: Padding(
               padding: EdgeInsets.symmetric(
-                  vertical: GlobalHeight * 0.07,
+                  vertical: GlobalHeight * 0.06,
                   horizontal: GlobalWidth * 0.05),
               child: Column(
                 children: [
@@ -38,7 +39,12 @@ class _OtpScreenState extends State<OtpScreen> {
                       alignment: Alignment.topLeft,
                       child: GestureDetector(
                         onTap: () => Navigator.of(context).pop(),
-                        child: const Icon(Icons.arrow_back_rounded),
+                        child: AvatarGlow(
+                          child: const Icon(Icons.arrow_back_rounded),
+                          glowRadiusFactor: 1,
+                          duration: Duration(milliseconds: 2000),
+                          glowColor: Colors.grey,
+                        ),
                       )),
                   Container(
                     width: GlobalWidth * 0.4,
@@ -85,7 +91,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     style: GoogleFonts.inter(
                       color: Colors.black54,
                       fontSize: 17,
-                      fontWeight: FontWeight.w800,
+                      fontWeight: FontWeight.w600,
                       fontStyle: FontStyle.normal,
                     ),
                     textAlign: TextAlign.center,

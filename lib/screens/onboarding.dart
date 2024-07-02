@@ -1,3 +1,4 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthguide/oscreens/o1.dart';
@@ -55,7 +56,7 @@ class _OnboardingState extends State<Onboarding> {
           ),
           //bottom
           Container(
-              alignment: Alignment(0, -0.8),
+              alignment: Alignment(0, -0.9),
               child: SmoothPageIndicator(
                 controller: _controller,
                 count: 3,
@@ -117,36 +118,41 @@ class _OnboardingState extends State<Onboarding> {
                     left: GlobalWidth * 0.15,
                     right: GlobalWidth * 0.15,
                   ),
-                  child: GestureDetector(
-                    onTap: () {
-                      onLastPage
-                          ? Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Login()),
-                              (route) => false,
-                            )
-                          : _controller.nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeIn,
-                            );
-                    },
-                    child: Container(
-                      width: GlobalWidth *
-                          2.5, // Adjust the width here (e.g., GlobalWidth * 0.8)
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.symmetric(vertical: 15.0),
-                      decoration: BoxDecoration(
-                        color: dblue,
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: Text(
-                        T3,
-                        style: GoogleFonts.inter(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w600,
-                          fontStyle: FontStyle.normal,
+                  child: AvatarGlow(
+                    glowRadiusFactor: 1,
+                    duration: Duration(milliseconds: 2000),
+                    glowColor: Colors.blueGrey,
+                    child: GestureDetector(
+                      onTap: () {
+                        onLastPage
+                            ? Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Login()),
+                                (route) => false,
+                              )
+                            : _controller.nextPage(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.easeIn,
+                              );
+                      },
+                      child: Container(
+                        width: GlobalWidth *
+                            2.5, // Adjust the width here (e.g., GlobalWidth * 0.8)
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.symmetric(vertical: 15.0),
+                        decoration: BoxDecoration(
+                          color: dblue,
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: Text(
+                          T3,
+                          style: GoogleFonts.inter(
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w600,
+                            fontStyle: FontStyle.normal,
+                          ),
                         ),
                       ),
                     ),
