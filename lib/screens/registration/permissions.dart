@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthguide/navbar.dart';
 import 'package:healthguide/screens/registration/name.dart';
 import 'package:healthguide/screens/splash.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -190,7 +191,7 @@ class _PermissionScreenState extends State<PermissionScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => NameScreen()),
+                        MaterialPageRoute(builder: (context) => BottomNav()),
                       );
                     },
                     style: ElevatedButton.styleFrom(

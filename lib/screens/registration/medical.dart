@@ -95,7 +95,7 @@ class _MedicalConditionsScreenState extends State<MedicalConditionsScreen> {
                       title: Text(
                         conditions[index],
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 12,
                           fontWeight: FontWeight.w500,
                           color: selected[index] ? dblue : Colors.black,
                         ),
