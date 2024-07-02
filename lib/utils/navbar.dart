@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Home/homeScreen.dart';
-import 'Profile/profileScreen.dart';
+import '../Home/homeScreen.dart';
+import '../Profile/profileScreen.dart';
 
 class BottomNav extends StatefulWidget {
   @override

@@ -36,7 +36,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-                'lib/images/splashbg.jpg'), // Replace with your image path
+                'lib/images/bg_final.png'), // Replace with your image path
             fit: BoxFit.cover, // Cover the entire screen
           ),
         ),
@@ -47,7 +47,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
               children: [
                 Container(
                   width: screenWidth,
-                  height: screenHeight * 0.75,
+                  height: screenHeight * 0.9,
                   child: Lottie.network(
                       'https://lottie.host/e8681eec-3f95-45da-bd31-e80dc70a9740/0RxJAwpmql.json',
                       fit: BoxFit.fill,
@@ -62,13 +62,14 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
                   child: Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: screenWidth * 0.015,
-                        ),
+                        padding: EdgeInsets.only(
+                            left: screenWidth * 0.05,
+                            right: screenWidth * 0.02),
                         child: Text(
                           " Discover",
                           style: GoogleFonts.rubik80sFade(
                             color: Color(0xFF15015D),
+                            // color: Colors.white70,
                             // color: Color(0xFF15015D),
                             fontSize: screenWidth * 0.09,
                             fontWeight: FontWeight.w700,
@@ -77,10 +78,11 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
                         ),
                       ),
                       DefaultTextStyle(
-                          style: GoogleFonts.luckiestGuy(
+                          style: GoogleFonts.rubik80sFade(
                             color: Color(0xFF15015D),
+                            // color: Colors.white70,
                             // color: Color(0xFFB6FFF8),
-                            fontSize: screenWidth * 0.1,
+                            fontSize: screenWidth * 0.08,
                             fontWeight: FontWeight.w700,
                             fontStyle: FontStyle.normal,
                           ),
