@@ -17,117 +17,116 @@ class _ActivityLevelPageState extends State<ActivityLevelPage> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: bgblue,
-        body: Padding(
-          padding: EdgeInsets.symmetric(
-              vertical: screenHeight * 0.04, horizontal: screenWidth * 0.05),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Align(
-                  alignment: Alignment.topRight,
-                  child: GestureDetector(
-                    onTap: () => Navigator.of(context).pop(),
-                    child: const Icon(Icons.arrow_back_rounded),
-                  )),
-              SizedBox(height: screenHeight * 0.02),
-              Text(
-                'You’re Almost there!',
-                style: GoogleFonts.inter(
-                  fontSize: screenWidth * 0.06,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF10328C),
+    return Scaffold(
+      backgroundColor: bgblue,
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+            vertical: screenHeight * 0.04, horizontal: screenWidth * 0.05),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: screenHeight * 0.02),
+            Align(
+                alignment: Alignment.topRight,
+                child: GestureDetector(
+                  onTap: () => Navigator.of(context).pop(),
+                  child: const Icon(Icons.arrow_back_rounded),
+                )),
+
+            Text(
+              'You’re Almost there!',
+              style: GoogleFonts.inter(
+                fontSize: screenWidth * 0.06,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF10328C),
+              ),
+            ),
+            SizedBox(height: screenWidth * 0.01),
+            Text(
+              "We're so happy to have you here.",
+              style: GoogleFonts.inter(
+                fontSize: screenWidth * 0.028,
+                color: Colors.black54,
+              ),
+            ),
+            SizedBox(height: screenWidth * 0.1),
+            Text(
+              maxLines: 2,
+              'How active are you?',
+              style: GoogleFonts.inter(
+                fontSize: screenWidth * 0.045,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF10328C),
+              ),
+            ),
+            Text(
+              "Tell us your honest answers, help us calculate important stats to help you curate plans.",
+              style: GoogleFonts.inter(
+                fontSize: screenHeight * 0.017,
+                color: Colors.black54,
+              ),
+            ),
+            SizedBox(height: screenHeight * 0.02),
+            buildRadioOption('None to Little Activity'),
+            buildRadioOption('Slightly Active'),
+            buildRadioOption('Moderately Active'),
+            buildRadioOption('Very Active'),
+            Spacer(),
+            SizedBox(height: screenHeight * 0.15),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HeightScreen()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF10328C),
+                  padding: EdgeInsets.symmetric(
+                      vertical: screenWidth *
+                          0.04), // 4% of screen width as vertical padding
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(screenWidth *
+                        0.025), // 2.5% of screen width as border radius
+                  ),
+                ),
+                child: Text(
+                  'Next',
+                  style: GoogleFonts.inter(
+                    fontSize:
+                        screenWidth * 0.04, // 4.5% of screen width as font size
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
-              SizedBox(height: screenWidth * 0.01),
-              Text(
-                "We're so happy to have you here.",
-                style: GoogleFonts.inter(
-                  fontSize: screenWidth * 0.028,
-                  color: Colors.black54,
-                ),
-              ),
-              SizedBox(height: screenWidth * 0.1),
-              Text(
-                maxLines: 2,
-                'How active are you?',
-                style: GoogleFonts.inter(
-                  fontSize: screenWidth * 0.045,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF10328C),
-                ),
-              ),
-              Text(
-                "Tell us your honest answers, help us calculate important stats to help you curate plans.",
-                style: GoogleFonts.inter(
-                  fontSize: screenHeight * 0.017,
-                  color: Colors.black54,
-                ),
-              ),
-              SizedBox(height: screenHeight * 0.02),
-              buildRadioOption('None to Little Activity'),
-              buildRadioOption('Slightly Active'),
-              buildRadioOption('Moderately Active'),
-              buildRadioOption('Very Active'),
-              Spacer(),
-              SizedBox(height: screenHeight * 0.15),
-              SizedBox(
+            ),
+            SizedBox(height: screenHeight * 0.05),
+            Container(
+              padding: EdgeInsets.only(bottom: screenWidth * 0.09),
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: screenWidth * 0.015,
                 width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HeightScreen()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF10328C),
-                    padding: EdgeInsets.symmetric(
-                        vertical: screenWidth *
-                            0.04), // 4% of screen width as vertical padding
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(screenWidth *
-                          0.025), // 2.5% of screen width as border radius
-                    ),
-                  ),
-                  child: Text(
-                    'Next',
-                    style: GoogleFonts.inter(
-                      fontSize: screenWidth *
-                          0.04, // 4.5% of screen width as font size
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey.shade400,
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: LinearProgressIndicator(
+                    value: 0.5,
+                    backgroundColor: Colors.transparent,
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
                   ),
                 ),
               ),
-              SizedBox(height: screenHeight * 0.05),
-              Container(
-                padding: EdgeInsets.only(bottom: screenWidth * 0.09),
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  height: screenWidth * 0.015,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.grey.shade400,
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: LinearProgressIndicator(
-                      value: 0.5,
-                      backgroundColor: Colors.transparent,
-                      valueColor:
-                          AlwaysStoppedAnimation<Color>(Color(0xFF10328C)),
-                    ),
-                  ),
-                ),
-              ),
-              // SizedBox(height: screenWidth * 0.05),
-            ],
-          ),
+            ),
+            // SizedBox(height: screenWidth * 0.05),
+          ],
         ),
       ),
     );
