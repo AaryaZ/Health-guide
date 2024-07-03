@@ -1,71 +1,80 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthguide/screens/login.dart';
 import 'package:healthguide/utils/snack_bar.dart';
-import 'active.dart';
+import 'location.dart';
 
-class AgeScreen extends StatefulWidget {
+class Email extends StatefulWidget {
   final String name;
   final String location;
   final String language;
   final String gender;
+  final int age;
+  final String activity;
+  final double height;
+  Email({
+    required this.name,
+    required this.location,
+    required this.language,
+    required this.gender,
+    required this.age,
+    required this.activity,
+    required this.height,
+  });
 
-  AgeScreen(
-      {required this.name,
-      required this.location,
-      required this.language,
-      required this.gender});
   @override
-  State<AgeScreen> createState() => _AgeScreenState();
+  State<Email> createState() => _EmailState();
 }
 
-class _AgeScreenState extends State<AgeScreen> {
+class _EmailState extends State<Email> {
+  TextEditingController _emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    // Get screen width
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-
-    List<String> ageList =
-        List.generate(100, (index) => (index + 1).toString());
-
-    String? selectedAge; // Change selectedAge to be nullable
 
     return Scaffold(
       backgroundColor: Color(0xFFE8EAF0),
       body: Padding(
         padding: EdgeInsets.symmetric(
-            vertical: screenHeight * 0.04, horizontal: screenWidth * 0.05),
+            vertical: screenHeight * 0.03,
+            horizontal:
+                screenWidth * 0.06), // 5% of screen width as horizontal padding
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: screenHeight * 0.02),
-                Align(
-                    alignment: Alignment.topRight,
-                    child: GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: const Icon(Icons.arrow_back_rounded),
-                    )),
-
+                SizedBox(
+                    height: screenWidth *
+                        0.15), // 10% of screen width as top margin
                 Text(
-                  'Tell us more!',
+                  'Hey You!',
                   style: GoogleFonts.inter(
-                    fontSize: screenWidth * 0.06,
+                    fontSize:
+                        screenWidth * 0.06, // 6% of screen width as font size
                     fontWeight: FontWeight.w600,
                     color: Color(0xFF10328C),
                   ),
                 ),
-                SizedBox(height: screenWidth * 0.01),
+                SizedBox(
+                    height: screenWidth *
+                        0.01), // 2% of screen width as vertical spacing
                 Text(
-                  "We’re happy you're here.",
+                  "We’re so glad you took this step. Let us you guide through this new journey towards your goal. Let’s start with your details!",
                   style: GoogleFonts.inter(
-                    fontSize: screenWidth * 0.028,
+                    fontSize:
+                        screenWidth * 0.028, // 4% of screen width as font size
                     color: Colors.black54,
                   ),
                 ),
-                SizedBox(height: screenWidth * 0.1),
+                SizedBox(
+                    height: screenWidth *
+                        0.1), // 8% of screen width as vertical spacing
                 Text(
-                  'Your Age',
+                  'Your Email',
                   style: GoogleFonts.inter(
                     fontSize: screenWidth *
                         0.045, // 4.5% of screen width as font size
@@ -73,66 +82,56 @@ class _AgeScreenState extends State<AgeScreen> {
                     color: Color(0xFF10328C),
                   ),
                 ),
-                SizedBox(height: screenWidth * 0.02),
-                Container(
-                  // Container to hold the DropdownButtonFormField with padding and alignment
-                  padding: EdgeInsets.symmetric(
-                      vertical: screenWidth * 0.01), // Adjust vertical padding
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(screenWidth * 0.025),
-                    color: Colors
-                        .white, // Background color of the dropdown container
-                  ),
-                  child: DropdownButtonFormField<String>(
-                    value: selectedAge,
-                    items: ageList.map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (String? value) {
-                      // Change onChanged to accept nullable String
-                      selectedAge = value;
-                    },
-                    decoration: InputDecoration(
-                      hintText: 'Select Your Age',
-                      hintStyle: TextStyle(fontSize: screenWidth * 0.04),
-                      border:
-                          InputBorder.none, // Remove border around the dropdown
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
+                SizedBox(
+                    height: screenWidth *
+                        0.02), // 2% of screen width as vertical spacing
+                TextField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    hintText: 'Enter Your Email',
+                    hintStyle: TextStyle(fontSize: screenWidth * 0.04),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(screenWidth * 0.025),
+                      borderSide: BorderSide(
+                          color: Colors.white), // Transparent border color
                     ),
-                    dropdownColor: Color(
-                        0xFFE8EAF0), // Set background color of the dropdown list
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(screenWidth * 0.025),
+                      borderSide: BorderSide(
+                          color:
+                              Color(0xFF10328C)), // Border color when focused
+                    ),
                   ),
                 ),
+
                 SizedBox(
                     height: screenHeight *
-                        0.48), // 8% of screen width as vertical spacing
+                        0.46), // 8% of screen width as vertical spacing
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      int age = 0;
-                      if (selectedAge == null) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBarHG(
-                                title: "Oops!", text: "Mention your age.")
-                            .show());
-                      } else {
-                        age = int.parse(selectedAge!);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ActivityLevelPage(
-                                    name: widget.name,
-                                    location: widget.location,
-                                    language: widget.language,
-                                    gender: widget.gender,
-                                    age: age,
-                                  )),
-                        );
-                      }
+                      // Navigate to LocationScreen.dart on button press
+                      (_emailController.text.isEmpty)
+                          ? ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBarHG(
+                                      title: "Oops!",
+                                      text: "Please enter your email.")
+                                  .show())
+                          : Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Login(
+                                        name: widget.name,
+                                        location: widget.location,
+                                        language: widget.language,
+                                        gender: widget.gender,
+                                        age: widget.age,
+                                        activity: widget.activity,
+                                        height: widget.height,
+                                        email: _emailController.text,
+                                      )),
+                            );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF10328C),
@@ -173,7 +172,7 @@ class _AgeScreenState extends State<AgeScreen> {
                       borderRadius: BorderRadius.circular(
                           10), // Clip content to rounded borders
                       child: LinearProgressIndicator(
-                        value: 0.4,
+                        value: 0.02,
                         backgroundColor: Colors
                             .transparent, // Transparent background for rounded corners
                         valueColor:
@@ -182,7 +181,9 @@ class _AgeScreenState extends State<AgeScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: screenWidth * 0.05),
+                SizedBox(
+                    height: screenWidth *
+                        0.05), // 5% of screen width as bottom margin
               ],
             ),
           ),

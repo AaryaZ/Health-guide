@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:healthguide/utils/snack_bar.dart';
 import 'age.dart';
 
 class GenderScreen extends StatefulWidget {
+  final String name;
+  final String location;
+  final String language;
+  GenderScreen(
+      {required this.name, required this.location, required this.language});
   @override
   _GenderScreenState createState() => _GenderScreenState();
 }
@@ -118,10 +124,26 @@ class _GenderScreenState extends State<GenderScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => AgeScreen()),
-                      );
+                      (selectedGender == "")
+                          ? ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBarHG(
+                                      title: "Oops!",
+                                      text: "Please select one langugae.")
+                                  .show())
+                          : Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AgeScreen(
+                                        name: widget.name,
+                                        location: widget.location,
+                                        language: widget.language,
+                                        gender: selectedGender,
+                                      )),
+                            );
+                      print(widget.name);
+                      print(widget.location);
+                      print(widget.language);
+                      print(selectedGender);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF10328C),

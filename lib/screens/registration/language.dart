@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthguide/utils/snack_bar.dart';
 import 'gender.dart';
 
 Color dblue = const Color.fromARGB(255, 16, 49, 140);
 Color bgblue = const Color.fromARGB(253, 232, 234, 240);
 
 class LanguagePreferenceScreen extends StatefulWidget {
+  final String name;
+  final String location;
+
+  LanguagePreferenceScreen({required this.name, required this.location});
   @override
   _LanguagePreferenceScreenState createState() =>
       _LanguagePreferenceScreenState();
@@ -27,6 +32,8 @@ class _LanguagePreferenceScreenState extends State<LanguagePreferenceScreen> {
   List<bool> selected = List.filled(10, false);
   int selectedCount = 0;
   final int maxSelections = 1;
+
+  String selectedLanguage = "";
 
   @override
   Widget build(BuildContext context) {
@@ -102,6 +109,8 @@ class _LanguagePreferenceScreenState extends State<LanguagePreferenceScreen> {
                         } else if (selectedCount == 1) {
                         } else {
                           selected[index] = true;
+                          selectedLanguage = languages[index];
+
                           selectedCount = 1;
                         }
                       });
@@ -115,10 +124,23 @@ class _LanguagePreferenceScreenState extends State<LanguagePreferenceScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => GenderScreen()),
-                  );
+                  (selectedLanguage == "")
+                      ? ScaffoldMessenger.of(context).showSnackBar(SnackBarHG(
+                              title: "Oops!",
+                              text: "Please select one langugae.")
+                          .show())
+                      : Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => GenderScreen(
+                                    name: widget.name,
+                                    location: widget.location,
+                                    language: selectedLanguage,
+                                  )),
+                        );
+                  print(widget.name);
+                  print(widget.location);
+                  print(selectedLanguage);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF10328C),

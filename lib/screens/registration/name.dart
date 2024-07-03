@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthguide/utils/snack_bar.dart';
 import 'location.dart';
 
 class NameScreen extends StatelessWidget {
+  TextEditingController _nameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     // Get screen width
@@ -60,6 +63,7 @@ class NameScreen extends StatelessWidget {
                     height: screenWidth *
                         0.02), // 2% of screen width as vertical spacing
                 TextField(
+                  controller: _nameController,
                   decoration: InputDecoration(
                     hintText: 'Enter Your Full Name',
                     hintStyle: TextStyle(fontSize: screenWidth * 0.04),
@@ -85,11 +89,19 @@ class NameScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       // Navigate to LocationScreen.dart on button press
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => LocationScreen()),
-                      );
+                      (_nameController.text.isEmpty)
+                          ? ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBarHG(
+                                      title: "Oops!",
+                                      text: "Please enter your name.")
+                                  .show())
+                          : Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LocationScreen(
+                                        name: _nameController.text,
+                                      )),
+                            );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF10328C),

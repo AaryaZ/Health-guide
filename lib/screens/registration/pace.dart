@@ -6,6 +6,22 @@ Color dblue = const Color.fromARGB(255, 16, 49, 140);
 Color bgblue = const Color.fromARGB(253, 232, 234, 240);
 
 class PacePage extends StatefulWidget {
+  final String name;
+  final String location;
+  final String language;
+  final String gender;
+  final int age;
+  final String activity;
+  final double height;
+  PacePage({
+    required this.name,
+    required this.location,
+    required this.language,
+    required this.gender,
+    required this.age,
+    required this.activity,
+    required this.height,
+  });
   @override
   _PacePageState createState() => _PacePageState();
 }
@@ -72,7 +88,15 @@ class _PacePageState extends State<PacePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => MedicalConditionsScreen()),
+                        builder: (context) => MedicalConditionsScreen(
+                              name: widget.name,
+                              location: widget.location,
+                              language: widget.language,
+                              gender: widget.gender,
+                              age: widget.age,
+                              activity: widget.activity,
+                              height: widget.height,
+                            )),
                   );
                 },
                 style: ElevatedButton.styleFrom(

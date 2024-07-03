@@ -3,6 +3,22 @@ import 'package:google_fonts/google_fonts.dart';
 import 'pace.dart';
 
 class TWeightScreen extends StatefulWidget {
+  final String name;
+  final String location;
+  final String language;
+  final String gender;
+  final int age;
+  final String activity;
+  final double height;
+  TWeightScreen({
+    required this.name,
+    required this.location,
+    required this.language,
+    required this.gender,
+    required this.age,
+    required this.activity,
+    required this.height,
+  });
   @override
   _TWeightScreenState createState() => _TWeightScreenState();
 }
@@ -182,7 +198,16 @@ class _TWeightScreenState extends State<TWeightScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => PacePage()),
+                        MaterialPageRoute(
+                            builder: (context) => PacePage(
+                                  name: widget.name,
+                                  location: widget.location,
+                                  language: widget.language,
+                                  gender: widget.gender,
+                                  age: widget.age,
+                                  activity: widget.activity,
+                                  height: widget.height,
+                                )),
                       );
                     },
                     style: ElevatedButton.styleFrom(

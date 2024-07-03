@@ -6,12 +6,24 @@ Color dblue = const Color.fromARGB(255, 16, 49, 140);
 Color bgblue = const Color.fromARGB(253, 232, 234, 240);
 
 class ActivityLevelPage extends StatefulWidget {
+  final String name;
+  final String location;
+  final String language;
+  final String gender;
+  final int age;
+  ActivityLevelPage({
+    required this.name,
+    required this.location,
+    required this.language,
+    required this.gender,
+    required this.age,
+  });
   @override
   _ActivityLevelPageState createState() => _ActivityLevelPageState();
 }
 
 class _ActivityLevelPageState extends State<ActivityLevelPage> {
-  String? _activityLevel = 'None to Little Activity';
+  String _activityLevel = 'None to Little Activity';
 
   @override
   Widget build(BuildContext context) {
@@ -79,8 +91,21 @@ class _ActivityLevelPageState extends State<ActivityLevelPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => HeightScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => HeightScreen(
+                            name: widget.name,
+                            location: widget.location,
+                            language: widget.location,
+                            gender: widget.gender,
+                            age: widget.age,
+                            activity: _activityLevel)),
                   );
+                  print(widget.name);
+                  print(widget.location);
+                  print(widget.language);
+                  print(widget.gender);
+                  print(widget.age);
+                  print(_activityLevel);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF10328C),
@@ -150,7 +175,7 @@ class _ActivityLevelPageState extends State<ActivityLevelPage> {
           groupValue: _activityLevel,
           onChanged: (newValue) {
             setState(() {
-              _activityLevel = newValue;
+              _activityLevel = newValue!;
             });
           },
         ),
