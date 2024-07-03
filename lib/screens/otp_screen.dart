@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthguide/screens/registration/name.dart';
+import 'package:healthguide/utils/navbar.dart';
 import 'package:healthguide/utils/snack_bar.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pinput/pinput.dart';
@@ -98,7 +99,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   ),
                   SizedBox(height: GlobalHeight * 0.02),
                   Pinput(
-                    length: 6,
+                    length: 4,
                     defaultPinTheme: PinTheme(
                       width: 60,
                       height: 60,
@@ -140,11 +141,11 @@ class _OtpScreenState extends State<OtpScreen> {
                     ),
                     child: GestureDetector(
                       onTap: () {
-                        if ((otpCode != null) && (otpCode!.length == 6)) {
+                        if ((otpCode != null) && (otpCode!.length == 4)) {
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => NameScreen()),
+                                builder: (context) => BottomNav()),
                             (route) => false,
                           );
                         } else {

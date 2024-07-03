@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:healthguide/utils/snack_bar.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'language.dart';
 
 class LocationScreen extends StatefulWidget {
+  final String name;
+
+  LocationScreen({required this.name});
   @override
   _LocationScreenState createState() => _LocationScreenState();
 }
@@ -139,11 +143,21 @@ class _LocationScreenState extends State<LocationScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => LanguagePreferenceScreen()),
-                      );
+                      (locationController.text.isEmpty)
+                          ? ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBarHG(
+                                      title: "Location Required!",
+                                      text: "Please enter Location.")
+                                  .show())
+                          : Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      LanguagePreferenceScreen(
+                                          name: widget.name,
+                                          location: locationController.text)),
+                            );
+                      print(widget.name);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF10328C),

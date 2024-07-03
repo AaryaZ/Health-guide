@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthguide/screens/login.dart';
+import 'package:healthguide/screens/registration/email.dart';
 import 'package:healthguide/utils/navbar.dart';
 import 'package:healthguide/screens/registration/name.dart';
 import 'package:healthguide/screens/splash.dart';
@@ -7,6 +9,22 @@ import 'package:permission_handler/permission_handler.dart';
 import 'location.dart';
 
 class PermissionScreen extends StatefulWidget {
+  final String name;
+  final String location;
+  final String language;
+  final String gender;
+  final int age;
+  final String activity;
+  final double height;
+  PermissionScreen({
+    required this.name,
+    required this.location,
+    required this.language,
+    required this.gender,
+    required this.age,
+    required this.activity,
+    required this.height,
+  });
   @override
   _PermissionScreenState createState() => _PermissionScreenState();
 }
@@ -191,7 +209,16 @@ class _PermissionScreenState extends State<PermissionScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => BottomNav()),
+                        MaterialPageRoute(
+                            builder: (context) => Email(
+                                  name: widget.name,
+                                  location: widget.location,
+                                  language: widget.language,
+                                  gender: widget.gender,
+                                  age: widget.age,
+                                  activity: widget.activity,
+                                  height: widget.height,
+                                )),
                       );
                     },
                     style: ElevatedButton.styleFrom(

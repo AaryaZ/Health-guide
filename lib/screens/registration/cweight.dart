@@ -3,6 +3,22 @@ import 'package:google_fonts/google_fonts.dart';
 import 'Tweight.dart';
 
 class CWeightScreen extends StatefulWidget {
+  final String name;
+  final String location;
+  final String language;
+  final String gender;
+  final int age;
+  final String activity;
+  final double height;
+  CWeightScreen({
+    required this.name,
+    required this.location,
+    required this.language,
+    required this.gender,
+    required this.age,
+    required this.activity,
+    required this.height,
+  });
   @override
   _CWeightScreenState createState() => _CWeightScreenState();
 }
@@ -10,6 +26,7 @@ class CWeightScreen extends StatefulWidget {
 class _CWeightScreenState extends State<CWeightScreen> {
   String? selectedKg;
   String? selectedLbs;
+
   bool isKg = true; // State to manage Kg (true) / Lbs (false) switch
 
   @override
@@ -183,7 +200,15 @@ class _CWeightScreenState extends State<CWeightScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => TWeightScreen()),
+                            builder: (context) => TWeightScreen(
+                                  name: widget.name,
+                                  location: widget.location,
+                                  language: widget.language,
+                                  gender: widget.gender,
+                                  age: widget.age,
+                                  activity: widget.activity,
+                                  height: widget.height,
+                                )),
                       );
                     },
                     style: ElevatedButton.styleFrom(

@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthguide/utils/snack_bar.dart';
 import 'cweight.dart';
 
 class HeightScreen extends StatefulWidget {
+  final String name;
+  final String location;
+  final String language;
+  final String gender;
+  final int age;
+  final String activity;
+  HeightScreen({
+    required this.name,
+    required this.location,
+    required this.language,
+    required this.gender,
+    required this.age,
+    required this.activity,
+  });
   @override
   _HeightScreenState createState() => _HeightScreenState();
 }
@@ -11,6 +26,7 @@ class _HeightScreenState extends State<HeightScreen> {
   String? selectedFeet;
   String? selectedInches;
   String? selectedCm;
+  double selectedHeight = 0;
   bool isKg = true; // State to manage Ft/inch (true) / cm (false) switch
 
   @override
@@ -226,11 +242,60 @@ class _HeightScreenState extends State<HeightScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CWeightScreen()),
-                      );
+                      if (isKg) {
+                        print("Feet${selectedFeet}");
+                        print("Inches${selectedInches}");
+                      } else {
+                        print("Inches${selectedInches}");
+                      }
+                      if (isKg) {
+                        if (selectedFeet == null || selectedInches == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBarHG(
+                                  title: "Oops!",
+                                  text: "Mention Feet and Inches.")
+                              .show());
+                        } else {
+                          selectedHeight = 2.54 *
+                              (int.parse(selectedFeet!) * 12 +
+                                  int.parse(selectedInches!));
+                          print(selectedHeight);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CWeightScreen(
+                                      name: widget.name,
+                                      location: widget.location,
+                                      language: widget.language,
+                                      gender: widget.gender,
+                                      age: widget.age,
+                                      activity: widget.activity,
+                                      height: selectedHeight,
+                                    )),
+                          );
+                        }
+                      } else {
+                        if (selectedCm == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBarHG(
+                                  title: "Oops!",
+                                  text: "Mention your height in cm.")
+                              .show());
+                        } else {
+                          selectedHeight = double.parse(selectedCm!);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CWeightScreen(
+                                      name: widget.name,
+                                      location: widget.location,
+                                      language: widget.language,
+                                      gender: widget.gender,
+                                      age: widget.age,
+                                      activity: widget.activity,
+                                      height: selectedHeight,
+                                    )),
+                          );
+                        }
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF10328C),
