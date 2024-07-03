@@ -7,10 +7,12 @@ Color dblue = const Color.fromARGB(255, 16, 49, 140);
 Color bgblue = const Color.fromARGB(253, 232, 234, 240);
 
 class LanguagePreferenceScreen extends StatefulWidget {
+  final String phone;
   final String name;
   final String location;
 
-  LanguagePreferenceScreen({required this.name, required this.location});
+  LanguagePreferenceScreen(
+      {required this.phone, required this.name, required this.location});
   @override
   _LanguagePreferenceScreenState createState() =>
       _LanguagePreferenceScreenState();
@@ -133,14 +135,12 @@ class _LanguagePreferenceScreenState extends State<LanguagePreferenceScreen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => GenderScreen(
+                                    phone: widget.phone,
                                     name: widget.name,
                                     location: widget.location,
                                     language: selectedLanguage,
                                   )),
                         );
-                  print(widget.name);
-                  print(widget.location);
-                  print(selectedLanguage);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF10328C),

@@ -5,11 +5,15 @@ import 'package:healthguide/utils/snack_bar.dart';
 import 'age.dart';
 
 class GenderScreen extends StatefulWidget {
+  final String phone;
   final String name;
   final String location;
   final String language;
   GenderScreen(
-      {required this.name, required this.location, required this.language});
+      {required this.phone,
+      required this.name,
+      required this.location,
+      required this.language});
   @override
   _GenderScreenState createState() => _GenderScreenState();
 }
@@ -134,16 +138,13 @@ class _GenderScreenState extends State<GenderScreen> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => AgeScreen(
+                                        phone: widget.phone,
                                         name: widget.name,
                                         location: widget.location,
                                         language: widget.language,
                                         gender: selectedGender,
                                       )),
                             );
-                      print(widget.name);
-                      print(widget.location);
-                      print(widget.language);
-                      print(selectedGender);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF10328C),

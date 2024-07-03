@@ -4,6 +4,7 @@ import 'package:healthguide/utils/snack_bar.dart';
 import 'cweight.dart';
 
 class HeightScreen extends StatefulWidget {
+  final String phone;
   final String name;
   final String location;
   final String language;
@@ -11,6 +12,7 @@ class HeightScreen extends StatefulWidget {
   final int age;
   final String activity;
   HeightScreen({
+    required this.phone,
     required this.name,
     required this.location,
     required this.language,
@@ -243,12 +245,6 @@ class _HeightScreenState extends State<HeightScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (isKg) {
-                        print("Feet${selectedFeet}");
-                        print("Inches${selectedInches}");
-                      } else {
-                        print("Inches${selectedInches}");
-                      }
-                      if (isKg) {
                         if (selectedFeet == null || selectedInches == null) {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBarHG(
                                   title: "Oops!",
@@ -258,11 +254,12 @@ class _HeightScreenState extends State<HeightScreen> {
                           selectedHeight = 2.54 *
                               (int.parse(selectedFeet!) * 12 +
                                   int.parse(selectedInches!));
-                          print(selectedHeight);
+
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => CWeightScreen(
+                                      phone: widget.phone,
                                       name: widget.name,
                                       location: widget.location,
                                       language: widget.language,
@@ -285,6 +282,7 @@ class _HeightScreenState extends State<HeightScreen> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => CWeightScreen(
+                                      phone: widget.phone,
                                       name: widget.name,
                                       location: widget.location,
                                       language: widget.language,

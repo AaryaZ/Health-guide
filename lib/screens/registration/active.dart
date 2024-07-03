@@ -6,12 +6,14 @@ Color dblue = const Color.fromARGB(255, 16, 49, 140);
 Color bgblue = const Color.fromARGB(253, 232, 234, 240);
 
 class ActivityLevelPage extends StatefulWidget {
+  final String phone;
   final String name;
   final String location;
   final String language;
   final String gender;
   final int age;
   ActivityLevelPage({
+    required this.phone,
     required this.name,
     required this.location,
     required this.language,
@@ -93,6 +95,7 @@ class _ActivityLevelPageState extends State<ActivityLevelPage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => HeightScreen(
+                            phone: widget.phone,
                             name: widget.name,
                             location: widget.location,
                             language: widget.location,
@@ -100,12 +103,6 @@ class _ActivityLevelPageState extends State<ActivityLevelPage> {
                             age: widget.age,
                             activity: _activityLevel)),
                   );
-                  print(widget.name);
-                  print(widget.location);
-                  print(widget.language);
-                  print(widget.gender);
-                  print(widget.age);
-                  print(_activityLevel);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF10328C),

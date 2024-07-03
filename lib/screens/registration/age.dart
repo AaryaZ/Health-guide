@@ -4,13 +4,15 @@ import 'package:healthguide/utils/snack_bar.dart';
 import 'active.dart';
 
 class AgeScreen extends StatefulWidget {
+  final String phone;
   final String name;
   final String location;
   final String language;
   final String gender;
 
   AgeScreen(
-      {required this.name,
+      {required this.phone,
+      required this.name,
       required this.location,
       required this.language,
       required this.gender});
@@ -125,6 +127,7 @@ class _AgeScreenState extends State<AgeScreen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => ActivityLevelPage(
+                                    phone: widget.phone,
                                     name: widget.name,
                                     location: widget.location,
                                     language: widget.language,

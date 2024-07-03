@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'Tweight.dart';
 
 class CWeightScreen extends StatefulWidget {
+  final String phone;
   final String name;
   final String location;
   final String language;
@@ -11,6 +12,7 @@ class CWeightScreen extends StatefulWidget {
   final String activity;
   final double height;
   CWeightScreen({
+    required this.phone,
     required this.name,
     required this.location,
     required this.language,
@@ -201,6 +203,7 @@ class _CWeightScreenState extends State<CWeightScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => TWeightScreen(
+                                  phone: widget.phone,
                                   name: widget.name,
                                   location: widget.location,
                                   language: widget.language,

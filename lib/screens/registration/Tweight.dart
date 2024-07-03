@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'pace.dart';
 
 class TWeightScreen extends StatefulWidget {
+  final String phone;
   final String name;
   final String location;
   final String language;
@@ -11,6 +12,7 @@ class TWeightScreen extends StatefulWidget {
   final String activity;
   final double height;
   TWeightScreen({
+    required this.phone,
     required this.name,
     required this.location,
     required this.language,
@@ -200,6 +202,7 @@ class _TWeightScreenState extends State<TWeightScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => PacePage(
+                                  phone: widget.phone,
                                   name: widget.name,
                                   location: widget.location,
                                   language: widget.language,

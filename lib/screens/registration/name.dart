@@ -3,7 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:healthguide/utils/snack_bar.dart';
 import 'location.dart';
 
-class NameScreen extends StatelessWidget {
+class NameScreen extends StatefulWidget {
+  final String phone;
+
+  NameScreen({required this.phone});
+  @override
+  State<NameScreen> createState() => _NameScreenState();
+}
+
+class _NameScreenState extends State<NameScreen> {
   TextEditingController _nameController = TextEditingController();
 
   @override
@@ -99,6 +107,7 @@ class NameScreen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => LocationScreen(
+                                        phone: widget.phone,
                                         name: _nameController.text,
                                       )),
                             );

@@ -7,9 +7,10 @@ import 'package:permission_handler/permission_handler.dart';
 import 'language.dart';
 
 class LocationScreen extends StatefulWidget {
+  final String phone;
   final String name;
 
-  LocationScreen({required this.name});
+  LocationScreen({required this.phone, required this.name});
   @override
   _LocationScreenState createState() => _LocationScreenState();
 }
@@ -154,10 +155,10 @@ class _LocationScreenState extends State<LocationScreen> {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       LanguagePreferenceScreen(
+                                          phone: widget.phone,
                                           name: widget.name,
                                           location: locationController.text)),
                             );
-                      print(widget.name);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF10328C),

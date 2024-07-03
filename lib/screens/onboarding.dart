@@ -5,7 +5,6 @@ import 'package:healthguide/oscreens/o1.dart';
 import 'package:healthguide/oscreens/o2.dart';
 import 'package:healthguide/oscreens/o3.dart';
 import 'package:healthguide/screens/login.dart';
-import 'package:healthguide/screens/registration/name.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 Color dblue = const Color.fromARGB(255, 16, 49, 140);
@@ -131,7 +130,7 @@ class _OnboardingState extends State<Onboarding> {
                               ? Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => NameScreen()),
+                                      builder: (context) => Login()),
                                   (route) => false,
                                 )
                               : _controller.nextPage(

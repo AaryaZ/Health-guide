@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'permissions.dart';
+import 'package:healthguide/screens/registration/email.dart';
 
 Color dblue = const Color.fromARGB(255, 16, 49, 140);
 Color bgblue = const Color.fromARGB(253, 232, 234, 240);
 
 class MedicalConditionsScreen extends StatefulWidget {
+  final String phone;
   final String name;
   final String location;
   final String language;
@@ -14,6 +15,7 @@ class MedicalConditionsScreen extends StatefulWidget {
   final String activity;
   final double height;
   MedicalConditionsScreen({
+    required this.phone,
     required this.name,
     required this.location,
     required this.language,
@@ -138,10 +140,24 @@ class _MedicalConditionsScreenState extends State<MedicalConditionsScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
+                  //selected medical conditions cncatenated ina single string
+                  String selectedConditions = conditions
+                      .asMap()
+                      .entries
+                      .where((entry) => selected[entry.key])
+                      .map((entry) => entry.value)
+                      .join(', ');
+
+                  if (selectedConditions.isEmpty) {
+                    selectedConditions = "None";
+                  }
+
+                  //------------------------------
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => PermissionScreen(
+                        builder: (context) => Email(
+                              phone: widget.phone,
                               name: widget.name,
                               location: widget.location,
                               language: widget.language,
@@ -149,6 +165,7 @@ class _MedicalConditionsScreenState extends State<MedicalConditionsScreen> {
                               age: widget.age,
                               activity: widget.activity,
                               height: widget.height,
+                              medicalcondition: selectedConditions,
                             )),
                   );
                 },

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthguide/screens/login.dart';
+import 'package:healthguide/screens/registration/permissions.dart';
 import 'package:healthguide/utils/snack_bar.dart';
-import 'location.dart';
 
 class Email extends StatefulWidget {
+  final String phone;
   final String name;
   final String location;
   final String language;
@@ -12,8 +12,11 @@ class Email extends StatefulWidget {
   final int age;
   final String activity;
   final double height;
+  final String medicalcondition;
   Email({
     required this.name,
+    required this.phone,
+    required this.medicalcondition,
     required this.location,
     required this.language,
     required this.gender,
@@ -121,7 +124,9 @@ class _EmailState extends State<Email> {
                           : Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Login(
+                                  builder: (context) => PermissionScreen(
+                                        email: _emailController.text,
+                                        phone: widget.phone,
                                         name: widget.name,
                                         location: widget.location,
                                         language: widget.language,
@@ -129,7 +134,8 @@ class _EmailState extends State<Email> {
                                         age: widget.age,
                                         activity: widget.activity,
                                         height: widget.height,
-                                        email: _emailController.text,
+                                        medicalcondition:
+                                            widget.medicalcondition,
                                       )),
                             );
                     },

@@ -1,14 +1,14 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthguide/screens/login.dart';
-import 'package:healthguide/screens/registration/email.dart';
-import 'package:healthguide/utils/navbar.dart';
-import 'package:healthguide/screens/registration/name.dart';
-import 'package:healthguide/screens/splash.dart';
+import 'package:healthguide/screens/otp_screen.dart';
+import 'package:healthguide/utils/snack_bar.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'location.dart';
 
 class PermissionScreen extends StatefulWidget {
+  final String phone;
+  final String email;
   final String name;
   final String location;
   final String language;
@@ -16,7 +16,10 @@ class PermissionScreen extends StatefulWidget {
   final int age;
   final String activity;
   final double height;
+  final String medicalcondition;
   PermissionScreen({
+    required this.phone,
+    required this.email,
     required this.name,
     required this.location,
     required this.language,
@@ -24,6 +27,7 @@ class PermissionScreen extends StatefulWidget {
     required this.age,
     required this.activity,
     required this.height,
+    required this.medicalcondition,
   });
   @override
   _PermissionScreenState createState() => _PermissionScreenState();
@@ -32,6 +36,68 @@ class PermissionScreen extends StatefulWidget {
 class _PermissionScreenState extends State<PermissionScreen> {
   bool allowNotifications = false;
   bool allowReminder = false;
+
+//----------------------------------
+//register api call
+  Future<void> registerUser() async {
+    String apiUrl =
+        'https://health-guide-backend.onrender.com/api/auth/register/';
+
+    //  payload
+    Map<String, dynamic> body = {
+      'name': widget.name,
+      'email': widget.email,
+      'location': widget.location,
+      'language': widget.language,
+      'gender': widget.gender,
+      'age': widget.age,
+      'active_time': widget.activity,
+      'height': widget.height,
+      'medical_condition': widget.medicalcondition,
+      'phoneNumber': widget.phone,
+    };
+
+    try {
+      // Make POST request
+      var response = await http.post(
+        Uri.parse(apiUrl),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(body),
+      );
+
+      // Check response
+      if (response.statusCode == 200) {
+        print(body['phoneNumber']);
+        print("Registered user");
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => OtpScreen(
+                    phone: body['phoneNumber'],
+                  )),
+        );
+      } else {
+        // Handle error scenario
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBarHG(
+            title: "Registration Failed",
+            text: "Failed to register. Please try again later.",
+          ).show(),
+        );
+      }
+    } catch (e) {
+      print('Error: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBarHG(
+          title: "Network Error",
+          text: "Failed to connect to the server. Please check your network.",
+        ).show(),
+      );
+    }
+  }
+//--------------------------------------
 
   Future<void> _showNotificationPermissionDialog() async {
     return showDialog<void>(
@@ -207,19 +273,7 @@ class _PermissionScreenState extends State<PermissionScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Email(
-                                  name: widget.name,
-                                  location: widget.location,
-                                  language: widget.language,
-                                  gender: widget.gender,
-                                  age: widget.age,
-                                  activity: widget.activity,
-                                  height: widget.height,
-                                )),
-                      );
+                      registerUser();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF10328C),

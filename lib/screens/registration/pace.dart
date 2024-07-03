@@ -6,6 +6,7 @@ Color dblue = const Color.fromARGB(255, 16, 49, 140);
 Color bgblue = const Color.fromARGB(253, 232, 234, 240);
 
 class PacePage extends StatefulWidget {
+  final String phone;
   final String name;
   final String location;
   final String language;
@@ -14,6 +15,7 @@ class PacePage extends StatefulWidget {
   final String activity;
   final double height;
   PacePage({
+    required this.phone,
     required this.name,
     required this.location,
     required this.language,
@@ -89,6 +91,7 @@ class _PacePageState extends State<PacePage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => MedicalConditionsScreen(
+                              phone: widget.phone,
                               name: widget.name,
                               location: widget.location,
                               language: widget.language,

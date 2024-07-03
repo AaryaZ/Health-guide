@@ -1,9 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:healthguide/screens/otp_screen.dart';
+import 'package:healthguide/screens/registration/name.dart';
 import 'package:healthguide/utils/snack_bar.dart';
 import 'package:lottie/lottie.dart';
 import 'package:http/http.dart' as http;
@@ -12,25 +12,7 @@ Color dblue = const Color.fromARGB(255, 16, 49, 140);
 Color bgblue = const Color.fromARGB(253, 232, 234, 240);
 
 class Login extends StatefulWidget {
-  final String name;
-  final String location;
-  final String language;
-  final String gender;
-  final int age;
-  final String activity;
-  final double height;
-  final String email;
-  Login({
-    required this.name,
-    required this.location,
-    required this.language,
-    required this.gender,
-    required this.age,
-    required this.activity,
-    required this.height,
-    required this.email,
-  });
-
+  const Login({super.key});
   @override
   State<Login> createState() => _LoginState();
 }
@@ -51,26 +33,17 @@ class _LoginState extends State<Login> {
     e164Key: "",
   );
 
-  Future<void> registerUser() async {
+  //check_phone api ko call
+  Future<void> checkPhoneNumber() async {
     String apiUrl =
-        'https://health-guide-backend.onrender.com/api/auth/register/';
+        'https://health-guide-backend.onrender.com/api/auth/check-phone-number/';
 
     //  payload
     Map<String, dynamic> body = {
-      'name': widget.name,
-      'email': widget.email,
-      'location': widget.location,
-      'language': widget.language,
-      'gender': widget.gender,
-      'age': widget.age,
-      'active_time': widget.activity,
-      'height': widget.height,
-      'medical_condition': "None",
       'phoneNumber': '+' + selectedCountry.phoneCode + phoneController.text,
     };
 
     try {
-      // Make POST request
       var response = await http.post(
         Uri.parse(apiUrl),
         headers: <String, String>{
@@ -81,11 +54,30 @@ class _LoginState extends State<Login> {
 
       // Check response
       if (response.statusCode == 200) {
-        // Handle success scenario
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => OtpScreen()),
-        );
+        var responseBody = jsonDecode(response.body);
+        String message = responseBody['msg'];
+        print(body['phoneNumber']);
+
+        if (message == "Phone number does not exist. Continue to register") {
+          print("New phone number");
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => NameScreen(
+                phone: body['phoneNumber'],
+              ),
+            ),
+          );
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => OtpScreen(
+                phone: body['phoneNumber'],
+              ),
+            ),
+          );
+        }
       } else {
         // Handle error scenario
         ScaffoldMessenger.of(context).showSnackBar(
@@ -110,6 +102,8 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     var GlobalHeight = MediaQuery.of(context).size.height;
     var GlobalWidth = MediaQuery.of(context).size.width;
+
+    String phoneNumber = '';
 
     return Scaffold(
       backgroundColor: bgblue,
@@ -238,9 +232,11 @@ class _LoginState extends State<Login> {
                 child: GestureDetector(
                   onTap: () {
                     if (phoneController.text.length > 9) {
-                      registerUser();
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => OtpScreen()));
+                      phoneNumber = '+' +
+                          selectedCountry.phoneCode +
+                          phoneController.text;
+                      print(phoneNumber);
+                      checkPhoneNumber();
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBarHG(
                               title: "Something went wrong!",
