@@ -237,16 +237,17 @@ class _LoginState extends State<Login> {
                     left: GlobalWidth * 0.1),
                 child: GestureDetector(
                   onTap: () {
-                    (phoneController.text.length > 9)
-                        ? Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => OtpScreen()))
-                        : ScaffoldMessenger.of(context).showSnackBar(SnackBarHG(
-                                title: "Something went wrong!",
-                                text:
-                                    "Please enter a Valid 10-digit phone number.")
-                            .show());
+                    if (phoneController.text.length > 9) {
+                      registerUser();
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => OtpScreen()));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBarHG(
+                              title: "Something went wrong!",
+                              text:
+                                  "Please enter a Valid 10-digit phone number.")
+                          .show());
+                    }
                   },
                   child: Container(
                     width: GlobalWidth,
