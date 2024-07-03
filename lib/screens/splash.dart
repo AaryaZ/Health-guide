@@ -1,27 +1,33 @@
 import 'dart:async';
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthguide/screens/onboarding.dart';
 import 'package:lottie/lottie.dart';
 
-Color dblue = const Color.fromARGB(255, 16, 49, 140);
-
-class Splash extends StatefulWidget {
-  const Splash({super.key});
-
+class SplashScreen extends StatefulWidget {
   @override
-  State<Splash> createState() => _SplashState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen> {
+  bool _showFirstSplash = true;
+
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 7), () {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+    _startSplashSequence();
+  }
+
+  _startSplashSequence() async {
+    await Future.delayed(Duration(seconds: 2), () {
+      setState(() {
+        _showFirstSplash = false;
+      });
+    });
+    await Future.delayed(Duration(seconds: 2), () {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => Onboarding()));
     });
@@ -29,81 +35,67 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-                'lib/images/bg_final.png'), // Replace with your image path
-            fit: BoxFit.cover, // Cover the entire screen
+      backgroundColor: _showFirstSplash ? Color(0xFF10328C) : Color(0xFFE8EAF0),
+      body: Center(
+        child: AnimatedSwitcher(
+          duration: Duration(milliseconds: 500),
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+          child: _showFirstSplash ? _buildFirstSplash() : _buildSecondSplash(),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFirstSplash() {
+    return SizedBox(
+      width: 250.0,
+      child: DefaultTextStyle(
+        style: GoogleFonts.inter(
+          textStyle: TextStyle(
+            fontSize: 29.5,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
-        child: Column(
-          children: [
-            Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                Container(
-                  width: screenWidth,
-                  height: screenHeight * 0.9,
-                  child: Lottie.network(
-                      'https://lottie.host/e8681eec-3f95-45da-bd31-e80dc70a9740/0RxJAwpmql.json',
-                      fit: BoxFit.fill,
-                      repeat: true),
-                ),
-                Container(
-                  // margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.02),
-                  height: screenWidth * 0.2,
-                  width: double.infinity,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: screenWidth * 0.05,
-                            right: screenWidth * 0.02),
-                        child: Text(
-                          " Discover",
-                          style: GoogleFonts.rubik80sFade(
-                            color: Color(0xFF15015D),
-                            // color: Colors.white70,
-                            // color: Color(0xFF15015D),
-                            fontSize: screenWidth * 0.09,
-                            fontWeight: FontWeight.w700,
-                            fontStyle: FontStyle.normal,
-                          ),
-                        ),
-                      ),
-                      DefaultTextStyle(
-                          style: GoogleFonts.rubik80sFade(
-                            color: Color(0xFF15015D),
-                            // color: Colors.white70,
-                            // color: Color(0xFFB6FFF8),
-                            fontSize: screenWidth * 0.08,
-                            fontWeight: FontWeight.w700,
-                            fontStyle: FontStyle.normal,
-                          ),
-                          child: AnimatedTextKit(
-                            animatedTexts: [
-                              RotateAnimatedText(' STRENGTH',
-                                  duration: Duration(seconds: 1)),
-                              RotateAnimatedText(' WELLNESS',
-                                  duration: Durations.extralong4),
-                              RotateAnimatedText('  YOU !!',
-                                  duration: Duration(seconds: 1)),
-                            ],
-                            repeatForever: true,
-                            // pause: Duration(milliseconds: 2000),
-                          ))
-                    ],
-                  ),
-                )
-              ],
+        child: AnimatedTextKit(
+          animatedTexts: [
+            FadeAnimatedText(
+              'YourHealthGuide',
+              duration: Duration(seconds: 2),
             ),
           ],
+          totalRepeatCount: 1,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSecondSplash() {
+    return Container(
+      key: UniqueKey(), // Ensure AnimatedSwitcher recognizes this as a new widget
+      color: Color(0xFFE8EAF0), // Background color of the page
+      child: Center(
+        child: Container(
+          width: 300,
+          height: 300,
+          decoration: BoxDecoration(
+            color: Color(0xFF10328C),
+            shape: BoxShape.circle,
+          ),
+          child: Center(
+            child: Lottie.network(
+              'https://lottie.host/5ceb577d-44ec-4d11-a47a-7f28e92be681/xfSxKtfuwG.json',
+              width: 300,
+              height: 160,
+              fit: BoxFit.fill,
+            ),
+          ),
         ),
       ),
     );
