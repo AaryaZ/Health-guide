@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:health_guide/Profile/Profile%20Options/Health%20Logs/bodyFatScreen.dart';
+import 'package:health_guide/Profile/Profile%20Options/Health%20Logs/muscleMassScreen.dart';
+import 'package:health_guide/Profile/Profile%20Options/Health%20Logs/proteinScreen.dart';
 
 class HealthLogScreen extends StatelessWidget {
   @override
@@ -12,34 +15,38 @@ class HealthLogScreen extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        centerTitle: true, // Center align appbar text
+        centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back,
-              color: Colors.white), // Make back icon white
+          icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        backgroundColor: Color.fromARGB(255, 9, 19,
-            157), // Use the same blue color as the app bar background
+        backgroundColor: Color.fromARGB(255, 9, 19, 157),
       ),
       body: ListView(
         children: [
-          buildHealthLogCard('Add Body Fat'),
-          buildHealthLogCard('Add Muscle Mass'),
-          buildHealthLogCard('Add Protein'),
+          buildHealthLogCard('Add Body Fat', context, BodyFatScreen()),
+          buildHealthLogCard('Add Muscle Mass', context, MuscleMassScreen()),
+          buildHealthLogCard('Add Protein', context, ProteinScreen()),
         ],
       ),
     );
   }
 
-  Widget buildHealthLogCard(String title) {
+  Widget buildHealthLogCard(String title, BuildContext context, Widget screen) {
     return Card(
       color: Color.fromARGB(255, 228, 226, 226),
       margin: EdgeInsets.only(top: 15, left: 20, right: 20),
       child: ListTile(
         title: Text(title),
-        trailing: Icon(Icons.add), // Replace with your desired icon
+        trailing: Icon(Icons.add),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => screen),
+          );
+        },
       ),
     );
   }
