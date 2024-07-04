@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'Home/homeScreen.dart';
-import 'Profile/profileScreen.dart';
+import 'package:health_guide/Home/homeScreen.dart';
+import 'package:health_guide/Plan/planScreen.dart';
+import 'package:health_guide/Profile/profileScreen.dart';
 
 class BottomNav extends StatefulWidget {
   @override
@@ -9,10 +10,10 @@ class BottomNav extends StatefulWidget {
 
 class _BottomNavState extends State<BottomNav> {
   int _selectedIndex = 0;
-
+  
   static List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
-    ReportScreen(),
+    PlanScreen(),
     ProfileScreen(),
   ];
 
@@ -54,14 +55,4 @@ class _BottomNavState extends State<BottomNav> {
   }
 }
 
-class ReportScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Report Screen',
-        style: TextStyle(fontSize: 24),
-      ),
-    );
-  }
-}
+
