@@ -36,88 +36,86 @@ class _OnboardingState extends State<Onboarding> {
   Widget build(BuildContext context) {
     var GlobalHeight = MediaQuery.of(context).size.height;
     var GlobalWidth = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            PageView(
-              controller: _controller,
-              onPageChanged: (index) {
-                setState(() {
-                  onLastPage = (index == 2);
-                  T1 = (index == 2)
-                      ? "Pull Your Strengths"
-                      : (index == 1)
-                          ? "Push Your Limits"
-                          : "Your Health Guide";
-                  T2 = (index == 2)
-                      ? "Achieve Your Goals"
-                      : (index == 1)
-                          ? "Reach New Goals"
-                          : "Your new ultimate guide";
-                  T3 = (index == 2) ? "Get Started" : "Next";
-                });
-              },
-              children: [O1(), O2(), O3()],
+    return Scaffold(
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          PageView(
+            controller: _controller,
+            onPageChanged: (index) {
+              setState(() {
+                onLastPage = (index == 2);
+                T1 = (index == 2)
+                    ? "Pull Your Strengths"
+                    : (index == 1)
+                        ? "Push Your Limits"
+                        : "Your Health Guide";
+                T2 = (index == 2)
+                    ? "Achieve Your Goals"
+                    : (index == 1)
+                        ? "Reach New Goals"
+                        : "Your new ultimate guide";
+                T3 = (index == 2) ? "Get Started" : "Next";
+              });
+            },
+            children: [O1(), O2(), O3()],
+          ),
+          //bottom
+          Container(
+              alignment: Alignment(0, -0.8),
+              child: SmoothPageIndicator(
+                controller: _controller,
+                count: 3,
+                effect: SwapEffect(
+                  activeDotColor: dblue,
+                  dotColor: Colors.white,
+                  dotHeight: 15,
+                  dotWidth: 20,
+                ),
+              )),
+          Container(
+            height: GlobalHeight * 0.35,
+            width: double.maxFinite,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(topRight: Radius.circular(60.0)),
             ),
-            //bottom
-            Container(
-                alignment: Alignment(0, -0.9),
-                child: SmoothPageIndicator(
-                  controller: _controller,
-                  count: 3,
-                  effect: SwapEffect(
-                    activeDotColor: dblue,
-                    dotColor: Colors.white,
-                    dotHeight: 15,
-                    dotWidth: 20,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: GlobalHeight * 0.3 * 0.15,
+                    left: GlobalWidth * 0.1,
+                    bottom: GlobalHeight * 0.3 * 0.01,
                   ),
-                )),
-            Container(
-              height: GlobalHeight * 0.35,
-              width: double.maxFinite,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius:
-                    BorderRadius.only(topRight: Radius.circular(60.0)),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: GlobalHeight * 0.3 * 0.15,
-                      left: GlobalWidth * 0.1,
-                      bottom: GlobalHeight * 0.3 * 0.01,
-                    ),
-                    child: FittedBox(
-                      child: Text(
-                        T1,
-                        maxLines: 1,
-                        style: GoogleFonts.inter(
-                          color: dblue,
-                          fontSize: 25,
-                          fontWeight: FontWeight.w700,
-                          fontStyle: FontStyle.normal,
-                        ),
+                  child: FittedBox(
+                    child: Text(
+                      T1,
+                      maxLines: 1,
+                      style: GoogleFonts.inter(
+                        color: dblue,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w700,
+                        fontStyle: FontStyle.normal,
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(left: GlobalWidth * 0.1),
-                    child: FittedBox(
-                      child: Text(
-                        T2,
-                        style: GoogleFonts.inter(
-                          color: Colors.grey,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          fontStyle: FontStyle.normal,
-                        ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: GlobalWidth * 0.1),
+                  child: FittedBox(
+                    child: Text(
+                      T2,
+                      style: GoogleFonts.inter(
+                        color: Colors.grey,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        fontStyle: FontStyle.normal,
                       ),
                     ),
                   ),
+
                   // Button
                   Padding(
                     padding: EdgeInsets.only(
@@ -163,16 +161,17 @@ class _OnboardingState extends State<Onboarding> {
                               fontWeight: FontWeight.w600,
                               fontStyle: FontStyle.normal,
                             ),
+
                           ),
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
