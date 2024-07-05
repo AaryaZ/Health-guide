@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:healthguide/Profile/Profile%20Options/Goals/goalScreen.dart';
+import 'package:healthguide/Profile/Profile%20Options/Health%20&%20Support/healthSupport.dart';
+import 'package:healthguide/Profile/Profile%20Options/Health%20Logs/healthLogScreen.dart';
+import 'package:healthguide/Profile/Profile%20Options/Reminder/reminderScreen.dart';
+import 'package:healthguide/Profile/Profile%20Options/Reports/reportsScreen.dart';
+import 'package:healthguide/Profile/Profile%20Options/Settings/settingsScreen.dart';
+import 'package:healthguide/Profile/Profile%20Options/Snap%20Gallery/snapGallery.dart';
+import 'package:healthguide/Profile/Profile%20Options/Task%20and%20Leaderboard/tasksScreen.dart';
 import 'package:healthguide/Profile/detailedProfile.dart';
-import 'package:healthguide/Profile/goalScreen.dart';
-import 'package:healthguide/Profile/healthLogScreen.dart';
-import 'package:healthguide/Profile/healthSupport.dart';
-import 'package:healthguide/Profile/reminderScreen.dart';
-import 'package:healthguide/Profile/reportsScreen.dart';
-import 'package:healthguide/Profile/settingsScreen.dart';
-import 'package:healthguide/Profile/snapGallery.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -145,7 +146,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   _buildListTile('Goals', Icons.flag, GoalScreen()),
                   _buildDivider(),
                   _buildListTile('Task & Leaderboards', Icons.star,
-                      TaskLeaderboardsPage()),
+                      TasksLeaderboardScreen()),
                   _buildDivider(),
                   _buildListTile(
                       'Snap Gallery', Icons.photo, SnapGalleryScreen()),

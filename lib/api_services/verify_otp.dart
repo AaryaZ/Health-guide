@@ -31,23 +31,7 @@ Future<void> verifyOTP(
       String refreshToken = responseBody['refreshToken'];
       await storage.write(key: 'accessToken', value: accessToken);
       await storage.write(key: 'refreshToken', value: refreshToken);
-      //------testing actual storage of tokens-----------
-      String? aT = await storage.read(key: 'accessToken');
-      String? rT = await storage.read(key: 'refreshToken');
-      if (aT == null) {
-        print("nhi hua accessToken");
-      } else {
-        print("ho gya");
-      }
-      if (rT == null) {
-        print("nhi hua refreshToken");
-      } else {
-        print("ho gya refrsh");
-      }
 
-      //------------------------------------------------
-
-      print("Otp verified successsfullyyyyy");
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => BottomNav()),
