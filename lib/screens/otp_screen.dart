@@ -1,12 +1,10 @@
-import 'dart:convert';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthguide/utils/navbar.dart';
+import 'package:healthguide/api_services/verify_otp.dart';
 import 'package:healthguide/utils/snack_bar.dart';
 import 'package:lottie/lottie.dart';
-import 'package:http/http.dart' as http;
 import 'package:pinput/pinput.dart';
 
 Color dblue = const Color.fromARGB(255, 16, 49, 140);
@@ -23,53 +21,6 @@ class OtpScreen extends StatefulWidget {
 class _OtpScreenState extends State<OtpScreen> {
   String? otpCode;
   int otplength = 0;
-
-//verify otp callllll-----------------
-  Future<void> registerUser() async {
-    String apiUrl =
-        'https://health-guide-backend.onrender.com/api/auth/verify-otp/';
-
-    //  payload
-    Map<String, dynamic> body = {'phoneNumber': widget.phone, 'otp': otpCode};
-
-    try {
-      // Make POST request
-      var response = await http.post(
-        Uri.parse(apiUrl),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(body),
-      );
-
-      // Check response
-      if (response.statusCode == 200) {
-        // Handle success scenario
-        print("Otp verified");
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => BottomNav()),
-        );
-      } else {
-        // Handle error scenario
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBarHG(
-            title: "Registration Failed",
-            text: "Failed to register. Please try again later.",
-          ).show(),
-        );
-      }
-    } catch (e) {
-      print('Error: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBarHG(
-          title: "Network Error",
-          text: "Failed to connect to the server. Please check your network.",
-        ).show(),
-      );
-    }
-  }
-//------------------------------
 
   @override
   Widget build(BuildContext context) {
@@ -191,12 +142,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     child: GestureDetector(
                       onTap: () {
                         if ((otpCode != null) && (otpCode!.length == 4)) {
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => BottomNav()),
-                            (route) => false,
-                          );
+                          verifyOTP(context, widget.phone, otpCode);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBarHG(
                                   title: "Oops!",
