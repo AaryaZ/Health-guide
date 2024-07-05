@@ -5,6 +5,7 @@ import 'package:healthguide/oscreens/o1.dart';
 import 'package:healthguide/oscreens/o2.dart';
 import 'package:healthguide/oscreens/o3.dart';
 import 'package:healthguide/screens/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 Color dblue = const Color.fromARGB(255, 16, 49, 140);
@@ -25,6 +26,11 @@ class _OnboardingState extends State<Onboarding> {
   String T1 = "Your Health Guide";
   String T2 = "Your new ultimate guide";
   String T3 = "Next";
+
+  Future<void> _completeOnboarding() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('seenOnboarding', true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,49 +115,53 @@ class _OnboardingState extends State<Onboarding> {
                       ),
                     ),
                   ),
-                ),
-                // Button
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: GlobalHeight * 0.3 * 0.2,
-                    bottom: GlobalHeight * 0.3 * 0.1,
-                    left: GlobalWidth * 0.15,
-                    right: GlobalWidth * 0.15,
-                  ),
-                  child: AvatarGlow(
-                    glowRadiusFactor: 1,
-                    duration: Duration(milliseconds: 2000),
-                    glowColor: Colors.blueGrey,
-                    child: GestureDetector(
-                      onTap: () {
-                        onLastPage
-                            ? Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Login()),
-                                (route) => false,
-                              )
-                            : _controller.nextPage(
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.easeIn,
-                              );
-                      },
-                      child: Container(
-                        width: GlobalWidth *
-                            2.5, // Adjust the width here (e.g., GlobalWidth * 0.8)
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.symmetric(vertical: 15.0),
-                        decoration: BoxDecoration(
-                          color: dblue,
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        child: Text(
-                          T3,
-                          style: GoogleFonts.inter(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600,
-                            fontStyle: FontStyle.normal,
+
+                  // Button
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: GlobalHeight * 0.3 * 0.2,
+                      bottom: GlobalHeight * 0.3 * 0.1,
+                      left: GlobalWidth * 0.15,
+                      right: GlobalWidth * 0.15,
+                    ),
+                    child: AvatarGlow(
+                      glowRadiusFactor: 1,
+                      duration: Duration(milliseconds: 2000),
+                      glowColor: Colors.blueGrey,
+                      child: GestureDetector(
+                        onTap: () async {
+                          if (onLastPage) {
+                            await _completeOnboarding();
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (context) => Login()),
+                              (route) => false,
+                            );
+                          } else {
+                            _controller.nextPage(
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.easeIn,
+                            );
+                          }
+                        },
+                        child: Container(
+                          width: GlobalWidth *
+                              2.5, // Adjust the width here (e.g., GlobalWidth * 0.8)
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.symmetric(vertical: 15.0),
+                          decoration: BoxDecoration(
+                            color: dblue,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          child: Text(
+                            T3,
+                            style: GoogleFonts.inter(
+                              color: Colors.white,
+                              fontSize: 17,
+                              fontWeight: FontWeight.w600,
+                              fontStyle: FontStyle.normal,
+                            ),
+
                           ),
                         ),
                       ),
