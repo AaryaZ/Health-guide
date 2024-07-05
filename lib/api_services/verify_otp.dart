@@ -34,20 +34,20 @@ Future<void> verifyOTP(
       //------testing actual storage of tokens-----------
       String? aT = await storage.read(key: 'accessToken');
       String? rT = await storage.read(key: 'refreshToken');
-      if (aT == null) {
-        print("nhi hua accessToken");
-      } else {
-        print("ho gya");
-      }
-      if (rT == null) {
-        print("nhi hua refreshToken");
-      } else {
-        print("ho gya refrsh");
-      }
+      // if (aT == null) {
+      //   print("nhi hua accessToken");
+      // } else {
+      //   print("ho gya");
+      // }
+      // if (rT == null) {
+      //   print("nhi hua refreshToken");
+      // } else {
+      //   print("ho gya refrsh");
+      // }
 
       //------------------------------------------------
 
-      print("Otp verified successsfullyyyyy");
+      print("Otp verified successsfully");
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => BottomNav()),
