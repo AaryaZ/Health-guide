@@ -3,11 +3,8 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthguide/Home/homeScreen.dart'; 
-import 'package:healthguide/screens/login.dart';
 import 'package:healthguide/screens/onboarding.dart';
 import 'package:lottie/lottie.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -30,29 +27,9 @@ class _SplashScreenState extends State<SplashScreen> {
         _showFirstSplash = false;
       });
     });
-    await Future.delayed(Duration(seconds: 2), () async {
-      final prefs = await SharedPreferences.getInstance();
-      final seenOnboarding = prefs.getBool('seenOnboarding') ?? false;
-
-      if (seenOnboarding) {
-        final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-        if (isLoggedIn) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => HomeScreen()), // Replace with your home screen
-          );
-        } else {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => Login()),
-          );
-        }
-      } else {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => Onboarding()),
-        );
-      }
+    await Future.delayed(Duration(seconds: 2), () {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => Onboarding()));
     });
   }
 
