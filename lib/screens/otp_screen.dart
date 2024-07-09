@@ -2,6 +2,7 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthguide/api_services/checkphone.dart';
 import 'package:healthguide/api_services/verify_otp.dart';
 import 'package:healthguide/utils/snack_bar.dart';
 import 'package:lottie/lottie.dart';
@@ -107,7 +108,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                         // border: Border.all(color: Colors.blueGrey),
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                               // color: Colors.grey.shade500,
                               color: Colors.grey,
@@ -171,6 +172,19 @@ class _OtpScreenState extends State<OtpScreen> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 10),
+                  GestureDetector(
+                    onTap: () {
+                      checkPhoneNumber(context, widget.phone);
+                    },
+                    child: const Text(
+                      "Resend New OTP",
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: const Color.fromARGB(255, 16, 49, 140)),
+                    ),
+                  )
                 ],
               ),
             ),

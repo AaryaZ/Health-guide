@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:healthguide/screens/onboarding.dart';
+import 'package:healthguide/screens/set_tracker.dart';
 import 'package:healthguide/screens/splash.dart';
 
 void main() {
@@ -12,7 +14,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: SetTracker(),
+      // home: Onboarding(),
     );
   }
 }

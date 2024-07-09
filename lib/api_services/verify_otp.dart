@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:healthguide/screens/set_tracker.dart';
 import 'package:healthguide/utils/navbar.dart';
 import 'package:healthguide/utils/snack_bar.dart';
 import 'package:http/http.dart' as http;
@@ -34,7 +35,7 @@ Future<void> verifyOTP(
 
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => BottomNav()),
+        MaterialPageRoute(builder: (context) => SetTracker()),
         (route) => false,
       );
     } else {
