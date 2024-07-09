@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthguide/api_services/set_usertrackers.dart';
+import 'package:healthguide/api_services/protectedroute.dart';
 import 'package:healthguide/utils/navbar.dart';
 
 class SetTracker extends StatefulWidget {
@@ -12,15 +12,33 @@ class SetTracker extends StatefulWidget {
 
 class _SetTrackerState extends State<SetTracker> {
   List<Tracker> myTrackers = [
-    Tracker(title: 'Sleep', imagePath: 'lib/images/medicine.jpg'),
-    Tracker(title: 'Medicine', imagePath: 'lib/images/sleep.png'),
-    Tracker(title: 'Heart Rate', imagePath: 'lib/images/heartrate.png'),
-    Tracker(title: 'Respiratory', imagePath: 'lib/images/respiratory.png'),
-    Tracker(title: 'Calories', imagePath: 'lib/images/food.png'),
-    Tracker(title: 'Water', imagePath: 'lib/images/water.png'),
-    Tracker(title: 'Step Counter', imagePath: 'lib/images/steps.png'),
-    Tracker(title: 'Work Out', imagePath: 'lib/images/workout.png'),
-    Tracker(title: 'Weight', imagePath: 'lib/images/weight.png'),
+    Tracker(
+        title: 'Sleep', tname: 'sleep', imagePath: 'lib/images/medicine.jpg'),
+    Tracker(
+        title: 'Medicine',
+        tname: 'medicine',
+        imagePath: 'lib/images/sleep.png'),
+    Tracker(
+        title: 'Heart Rate',
+        tname: 'heartRate',
+        imagePath: 'lib/images/heartrate.png'),
+    Tracker(
+        title: 'Respiratory',
+        tname: 'respiratory',
+        imagePath: 'lib/images/respiratory.png'),
+    Tracker(
+        title: 'Calories', tname: 'calories', imagePath: 'lib/images/food.png'),
+    Tracker(title: 'Water', tname: 'water', imagePath: 'lib/images/water.png'),
+    Tracker(
+        title: 'Step Counter',
+        tname: 'stepCounter',
+        imagePath: 'lib/images/steps.png'),
+    Tracker(
+        title: 'Work Out',
+        tname: 'workOut',
+        imagePath: 'lib/images/workout.png'),
+    Tracker(
+        title: 'Weight', tname: 'weight', imagePath: 'lib/images/weight.png'),
   ];
 
   List<String> selectedTrackerTitles = [];
@@ -60,7 +78,7 @@ class _SetTrackerState extends State<SetTracker> {
                   'What brings you here?',
                   style: GoogleFonts.inter(
                     color: const Color.fromARGB(255, 16, 49, 140),
-                    fontSize: 20,
+                    fontSize: 22,
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                   ),
@@ -77,9 +95,9 @@ class _SetTrackerState extends State<SetTracker> {
                     setState(() {
                       tracker.isSelected = !tracker.isSelected;
                       if (tracker.isSelected) {
-                        selectedTrackerTitles.add(tracker.title);
+                        selectedTrackerTitles.add(tracker.tname);
                       } else {
-                        selectedTrackerTitles.remove(tracker.title);
+                        selectedTrackerTitles.remove(tracker.tname);
                       }
                     });
                   },
@@ -100,6 +118,7 @@ class _SetTrackerState extends State<SetTracker> {
         foregroundColor: Colors.white,
         onPressed: () {
           sendSelectedTrackers(context, selectedTrackerTitles);
+          protectedRoute(context);
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => BottomNav()),
@@ -114,11 +133,13 @@ class _SetTrackerState extends State<SetTracker> {
 
 class Tracker {
   final String title;
+  final String tname;
   final String imagePath;
   bool isSelected;
 
   Tracker({
     required this.title,
+    required this.tname,
     required this.imagePath,
     this.isSelected = false,
   });
@@ -138,7 +159,15 @@ Widget customListTile(
         radius: 40,
         backgroundImage: AssetImage(imagePath),
       ),
-      title: Text(title),
+      title: Text(
+        title,
+        style: GoogleFonts.inter(
+          color: const Color.fromARGB(255, 16, 49, 140),
+          fontSize: 20,
+          fontWeight: FontWeight.w500,
+          fontStyle: FontStyle.normal,
+        ),
+      ),
       trailing:
           isSelected ? Icon(Icons.check_circle, color: Colors.green) : null,
       shape: RoundedRectangleBorder(

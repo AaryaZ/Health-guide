@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthguide/api_services/checkphone.dart';
+import 'package:healthguide/api_services/protectedroute.dart';
 import 'package:healthguide/api_services/verify_otp.dart';
 import 'package:healthguide/utils/snack_bar.dart';
 import 'package:lottie/lottie.dart';
@@ -144,6 +145,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       onTap: () {
                         if ((otpCode != null) && (otpCode!.length == 4)) {
                           verifyOTP(context, widget.phone, otpCode);
+                          protectedRoute(context);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBarHG(
                                   title: "Oops!",

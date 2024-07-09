@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -56,6 +57,15 @@ class _PermissionScreenState extends State<PermissionScreen> {
       'medical_condition': widget.medicalcondition,
       'phoneNumber': widget.phone,
     };
+
+    //storing in local storage
+    final storage = FlutterSecureStorage();
+
+    await storage.write(key: 'email', value: widget.email);
+    await storage.write(key: 'gender', value: widget.gender);
+    await storage.write(key: 'phone', value: widget.phone);
+    await storage.write(key: 'location', value: widget.location);
+    //---------------------------------------------------
 
     try {
       // Make POST request

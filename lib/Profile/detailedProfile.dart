@@ -1,6 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class DetailedProfileScreen extends StatelessWidget {
+class DetailedProfileScreen extends StatefulWidget {
+  @override
+  State<DetailedProfileScreen> createState() => _DetailedProfileScreenState();
+}
+
+class _DetailedProfileScreenState extends State<DetailedProfileScreen> {
+  final storage = FlutterSecureStorage();
+
+  String? uName;
+  String? uEmail;
+  String? uGender;
+  String? uPhone;
+  String? uLocation;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserName();
+  }
+
+  Future<void> _loadUserName() async {
+    final sname = await storage.read(key: 'userName');
+    final semail = await storage.read(key: 'email');
+    final sgender = await storage.read(key: 'gender');
+    final sphone = await storage.read(key: 'phone');
+    final slocation = await storage.read(key: 'location');
+    setState(() {
+      uName = sname;
+      uEmail = semail;
+      uGender = sgender;
+      uPhone = sphone;
+      uLocation = slocation;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,12 +70,12 @@ class DetailedProfileScreen extends StatelessWidget {
                 backgroundColor: Colors.white,
               ),
               SizedBox(height: 20),
-              buildTextField('Name', 'Rohan Patil',
+              buildTextField('Name', '${uName}',
                   'assets/name_image.png'), // Use image asset
-              buildTextField('Gender', 'Male',
+              buildTextField('Gender', '${uGender ?? 'Male'}',
                   'assets/gender_image.png'), // Use image asset
-              buildTextField(
-                  'Phone No', '+7738987289', 'assets/phone_image.png'),
+              buildTextField('Phone No', '${uPhone ?? '+91773684980'}',
+                  'assets/phone_image.png'),
               buildTextField('Height', '5\'9"', 'assets/height_image.png'),
               buildTextField(
                   'Current Weight', '62.5 kgs', 'assets/weight_image.png'),
@@ -48,10 +83,9 @@ class DetailedProfileScreen extends StatelessWidget {
                   'Target Weight', '75', 'assets/target_weight_image.png'),
               buildTextField(
                   'Pace', '0.25 Kgs per week', 'assets/pace_image.png'),
-              buildTextField('Medical Condition', 'Diabetes',
-                  'assets/medical_condition_image.png'),
-              buildTextField(
-                  'Location', 'Bandra W', 'assets/location_image.png'),
+
+              buildTextField('Location', '${uLocation ?? 'Bandra West'}',
+                  'assets/location_image.png'),
               SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
@@ -59,25 +93,21 @@ class DetailedProfileScreen extends StatelessWidget {
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                      vertical: 12.0,
-                      horizontal: 24.0), 
+                      vertical: 12.0, horizontal: 24.0),
                   child: Text(
                     'Edit',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 16.0, 
+                      fontSize: 16.0,
                     ),
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                        8.0),
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
-                  minimumSize: Size(double.infinity,
-                      50), 
-                  backgroundColor: Color.fromARGB(255, 9, 19,
-                      157), 
+                  minimumSize: Size(double.infinity, 50),
+                  backgroundColor: Color.fromARGB(255, 9, 19, 157),
                 ),
               ),
             ],

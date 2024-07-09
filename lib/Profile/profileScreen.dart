@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:healthguide/Profile/Profile%20Options/Goals/goalScreen.dart';
 import 'package:healthguide/Profile/Profile%20Options/Health%20&%20Support/healthSupport.dart';
 import 'package:healthguide/Profile/Profile%20Options/Health%20Logs/healthLogScreen.dart';
@@ -15,7 +16,24 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  String userName = "Rohan"; // This should be fetched from your database
+  final storage = FlutterSecureStorage();
+
+  String? uName;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserName();
+  }
+
+  Future<void> _loadUserName() async {
+    final sname = await storage.read(key: 'userName');
+
+    setState(() {
+      uName = sname;
+    });
+  }
+
   String invitationCode =
       "896fga7s5"; // This should be fetched from your database
   String profileImageUrl =
@@ -41,7 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Hi $userName!',
+                          'Hi $uName!',
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,

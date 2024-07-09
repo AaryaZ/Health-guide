@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:healthguide/Plan/planScreen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -9,6 +10,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final storage = FlutterSecureStorage();
+  String? uName;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserName();
+  }
+
+  Future<void> _loadUserName() async {
+    final name = await storage.read(key: 'userName');
+    setState(() {
+      uName = name;
+    });
+  }
+
   final List<TrackerData> trackers = [
     TrackerData(
         title: 'Steps',
@@ -65,10 +82,10 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(left: 8),
                     child: Text(
-                      'Hello User!',
+                      'Hello ${uName ?? 'User'}!',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -386,9 +403,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () {
-                  // Handle edit button press
-                },
+                onPressed: () {},
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 12.0, horizontal: 24.0),

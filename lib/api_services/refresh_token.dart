@@ -60,32 +60,3 @@ Future<void> refreshTokenApi(BuildContext context) async {
     }
   }
 }
-
-Future<Map<String, dynamic>> protectedRoute(BuildContext context) async {
-  final storage = FlutterSecureStorage();
-  String? aT = await storage.read(key: 'accessToken');
-
-  final url =
-      Uri.parse('https://health-guide-backend.onrender.com/api/protected/');
-
-  final response = await http.get(
-    url,
-    headers: {
-      'Authorization': 'Token $aT',
-      'Content-Type': 'application/json',
-    },
-  );
-
-  if (response.statusCode == 200) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBarHG(
-        title: "Verification  Failed",
-        text: "Please enter your phone number again.",
-      ).show(),
-    );
-    print(response.body);
-    return jsonDecode(response.body);
-  } else {
-    throw Exception('Authentication Failure');
-  }
-}

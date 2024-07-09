@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:healthguide/screens/set_tracker.dart';
-import 'package:healthguide/utils/navbar.dart';
 import 'package:healthguide/utils/snack_bar.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
