@@ -81,8 +81,7 @@ class _PacePageState extends State<PacePage> {
             buildRadioOption('0.5 Kg per week'),
             buildRadioOption('0.75 Kg per week'),
             buildRadioOption('1 Kg per week'),
-            Spacer(),
-            SizedBox(height: screenHeight * 0.22),
+            SizedBox(height: screenHeight * 0.2),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(

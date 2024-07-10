@@ -93,7 +93,7 @@ class _PermissionScreenState extends State<PermissionScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBarHG(
             title: "Registration Failed",
-            text: "Failed to register. Please try again later.",
+            text: "Please try again later.",
           ).show(),
         );
       }
@@ -169,8 +169,8 @@ class _PermissionScreenState extends State<PermissionScreen> {
             vertical: screenHeight * 0.04,
             horizontal:
                 screenWidth * 0.05), // 5% of screen width as horizontal padding
-        child: Center(
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

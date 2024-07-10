@@ -178,7 +178,7 @@ class _EmailState extends State<Email> {
                       borderRadius: BorderRadius.circular(
                           10), // Clip content to rounded borders
                       child: LinearProgressIndicator(
-                        value: 0.02,
+                        value: 0.98,
                         backgroundColor: Colors
                             .transparent, // Transparent background for rounded corners
                         valueColor:

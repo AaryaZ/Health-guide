@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthguide/screens/registration/email.dart';
 
@@ -95,7 +96,7 @@ class _MedicalConditionsScreenState extends State<MedicalConditionsScreen> {
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 3,
-                  crossAxisSpacing: 8,
+                  crossAxisSpacing: 2,
                   mainAxisSpacing: 8,
                 ),
                 itemCount: conditions.length,
@@ -110,12 +111,18 @@ class _MedicalConditionsScreenState extends State<MedicalConditionsScreen> {
                     elevation: selected[index] ? 5 : 2,
                     shadowColor: Colors.black.withOpacity(0.2),
                     child: CheckboxListTile(
-                      title: Text(
-                        conditions[index],
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: selected[index] ? dblue : Colors.black,
+                      title: FittedBox(
+                        fit: BoxFit.fitHeight,
+                        child: Text(
+                          conditions[index],
+                          style: TextStyle(
+                            fontSize: 5,
+                            // fontWeight: FontWeight.w500,
+                            color: selected[index] ? dblue : Colors.black,
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.visible,
+                          softWrap: true,
                         ),
                       ),
                       value: selected[index],

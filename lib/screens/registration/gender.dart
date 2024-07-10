@@ -50,12 +50,15 @@ class _GenderScreenState extends State<GenderScreen> {
                 color: isSelected ? Colors.white : Color(0xFF10328C),
               ),
               SizedBox(height: MediaQuery.of(context).size.width * 0.02),
-              Text(
-                gender,
-                style: GoogleFonts.inter(
-                  fontSize: MediaQuery.of(context).size.width * 0.045,
-                  fontWeight: FontWeight.w600,
-                  color: isSelected ? Colors.white : Color(0xFF10328C),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  gender,
+                  style: GoogleFonts.inter(
+                    fontSize: MediaQuery.of(context).size.width * 0.04,
+                    fontWeight: FontWeight.w600,
+                    color: isSelected ? Colors.white : Color(0xFF10328C),
+                  ),
                 ),
               ),
             ],
