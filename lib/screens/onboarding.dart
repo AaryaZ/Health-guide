@@ -5,6 +5,7 @@ import 'package:healthguide/oscreens/o1.dart';
 import 'package:healthguide/oscreens/o2.dart';
 import 'package:healthguide/oscreens/o3.dart';
 import 'package:healthguide/screens/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 Color dblue = const Color.fromARGB(255, 16, 49, 140);
@@ -25,6 +26,16 @@ class _OnboardingState extends State<Onboarding> {
   String T1 = "Your Health Guide";
   String T2 = "Your new ultimate guide";
   String T3 = "Next";
+
+  Future<void> _completeOnboarding() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('hasSeenOnboarding', true);
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => Login()),
+      (route) => false,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,12 +136,7 @@ class _OnboardingState extends State<Onboarding> {
                     child: GestureDetector(
                       onTap: () {
                         onLastPage
-                            ? Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Login()),
-                                (route) => false,
-                              )
+                            ? _completeOnboarding()
                             : _controller.nextPage(
                                 duration: Duration(milliseconds: 500),
                                 curve: Curves.easeIn,

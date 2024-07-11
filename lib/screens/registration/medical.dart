@@ -111,19 +111,16 @@ class _MedicalConditionsScreenState extends State<MedicalConditionsScreen> {
                     elevation: selected[index] ? 5 : 2,
                     shadowColor: Colors.black.withOpacity(0.2),
                     child: CheckboxListTile(
-                      title: FittedBox(
-                        fit: BoxFit.fitHeight,
-                        child: Text(
-                          conditions[index],
-                          style: TextStyle(
-                            fontSize: 5,
-                            // fontWeight: FontWeight.w500,
-                            color: selected[index] ? dblue : Colors.black,
-                          ),
-                          maxLines: 2,
-                          overflow: TextOverflow.visible,
-                          softWrap: true,
+                      title: Text(
+                        conditions[index],
+                        style: TextStyle(
+                          fontSize: 13,
+                          // fontWeight: FontWeight.w500,
+                          color: selected[index] ? dblue : Colors.black,
                         ),
+                        maxLines: 2,
+                        overflow: TextOverflow.visible,
+                        softWrap: true,
                       ),
                       value: selected[index],
                       onChanged: (bool? value) {

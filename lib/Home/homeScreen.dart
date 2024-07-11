@@ -57,15 +57,18 @@ class _HomeScreenState extends State<HomeScreen> {
     TransformationData(
         beforeImage: 'assets/before1.png',
         afterImage: 'assets/after1.png',
-        description: 'Weight loss in 3 months'),
+        description: 'Weight loss in 3 months',
+        title: 'From 125 kgs to 75 kgs, this entrepreneur went from fat to f'),
     TransformationData(
         beforeImage: 'assets/before2.png',
         afterImage: 'assets/after2.png',
-        description: 'Muscle gain in 6 months'),
+        description: 'Muscle gain in 6 months',
+        title: 'From 125 kgs to 75 kgs, this entrepreneur went from fat to f'),
     TransformationData(
         beforeImage: 'assets/before3.png',
         afterImage: 'assets/after3.png',
-        description: 'Fat loss in 4 months'),
+        description: 'Fat loss in 4 months',
+        title: 'From 125 kgs to 75 kgs, this entrepreneur went from fat to f'),
   ];
 
   @override
@@ -369,22 +372,44 @@ class _HomeScreenState extends State<HomeScreen> {
                 'User Trackers',
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
-              GridView.count(
-                shrinkWrap: true,
-                crossAxisCount: 2,
-                childAspectRatio: 1,
-                children: [
-                  TrackerCircularProgress(
-                      title: 'Weight', value: 0.75, displayValue: '75 Kgs'),
-                  TrackerCircularProgress(
-                      title: 'Body Fat %', value: 0.25, displayValue: '25%'),
-                  TrackerCircularProgress(
-                      title: 'Muscle Mass',
-                      value: 0.50,
-                      displayValue: '39 Kgs'),
-                  TrackerCircularProgress(
-                      title: 'BMI', value: 0.7, displayValue: '22.5'),
-                ],
+              SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Container(
+                  height: 370,
+                  child: GridView.count(
+                    shrinkWrap: true,
+                    crossAxisCount: 2,
+                    childAspectRatio: 1,
+                    children: [
+                      TrackerCircularProgress(
+                          title: 'Weight',
+                          subtitle: "You gained +5Kg.",
+                          value: 0.75,
+                          displayValue: '75 Kgs'),
+                      TrackerCircularProgress(
+                          title: 'Body Fat %',
+                          subtitle: "Your body fat reduced by 0.25%.",
+                          value: 0.25,
+                          displayValue: '25%'),
+                      TrackerCircularProgress(
+                          title: 'Muscle Mass',
+                          subtitle:
+                              "Your mucle mass indicates you have a stable metabolism.",
+                          value: 0.50,
+                          displayValue: '39 Kgs'),
+                      TrackerCircularProgress(
+                          title: 'BMI',
+                          subtitle: "You have a standard Body Mass Index",
+                          value: 0.7,
+                          displayValue: '22.5'),
+                      TrackerCircularProgress(
+                          title: 'BMR',
+                          subtitle: "Stable Basal Metabolic Rate",
+                          value: 0.50,
+                          displayValue: '39 Kgs'),
+                    ],
+                  ),
+                ),
               ),
               SizedBox(height: 25),
               Text(
@@ -400,6 +425,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       beforeImage: transformation.beforeImage,
                       afterImage: transformation.afterImage,
                       description: transformation.description,
+                      title: transformation.title,
                     );
                   }).toList(),
                 ),
@@ -455,12 +481,13 @@ class TransformationData {
   final String beforeImage;
   final String afterImage;
   final String description;
+  final String title;
 
-  TransformationData({
-    required this.beforeImage,
-    required this.afterImage,
-    required this.description,
-  });
+  TransformationData(
+      {required this.beforeImage,
+      required this.afterImage,
+      required this.description,
+      required this.title});
 }
 
 class InfoCard extends StatelessWidget {
@@ -578,11 +605,13 @@ class HealthCard extends StatelessWidget {
 
 class TrackerCircularProgress extends StatelessWidget {
   final String title;
+  final String subtitle;
   final double value;
   final String displayValue;
 
   TrackerCircularProgress({
     required this.title,
+    required this.subtitle,
     required this.value,
     required this.displayValue,
   });
@@ -600,7 +629,11 @@ class TrackerCircularProgress extends StatelessWidget {
               title,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 40),
+            Text(
+              subtitle,
+              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 30),
             Stack(
               alignment: Alignment.center,
               children: [
@@ -624,37 +657,59 @@ class TrackerCircularProgress extends StatelessWidget {
   }
 }
 
-class TransformationCard extends StatelessWidget {
+class TransformationCard extends StatefulWidget {
   final String beforeImage;
   final String afterImage;
   final String description;
+  final String title;
 
-  TransformationCard({
-    required this.beforeImage,
-    required this.afterImage,
-    required this.description,
-  });
+  TransformationCard(
+      {required this.beforeImage,
+      required this.afterImage,
+      required this.description,
+      required this.title});
 
   @override
+  State<TransformationCard> createState() => _TransformationCardState();
+}
+
+class _TransformationCardState extends State<TransformationCard> {
+  bool _showDescription = false;
+  @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Image.asset(beforeImage, width: 90, height: 160),
-                Image.asset(afterImage, width: 90, height: 160),
-              ],
-            ),
-            SizedBox(height: 8),
-            Text(description),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Icon(Icons.favorite_border),
-            ),
-          ],
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _showDescription = !_showDescription; // Toggle the description
+        });
+      },
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Image.asset(widget.beforeImage, width: 90, height: 160),
+                  Image.asset(widget.afterImage, width: 90, height: 160),
+                ],
+              ),
+              SizedBox(height: 8),
+              Text(widget.description),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Icon(Icons.favorite_border),
+              ),
+              if (_showDescription)
+                Text(
+                  widget.description,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );

@@ -111,11 +111,20 @@ class _SetTrackerState extends State<SetTracker> {
               childCount: myTrackers.length,
             ),
           ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 50,
+            ),
+          )
         ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color.fromARGB(255, 16, 49, 140),
         foregroundColor: Colors.white,
+        elevation: 30,
+        // label: Text("Next"),
+        // icon: Icon(Icons.send_rounded),
         onPressed: () {
           sendSelectedTrackers(context, selectedTrackerTitles);
           protectedRoute(context);
@@ -125,7 +134,8 @@ class _SetTrackerState extends State<SetTracker> {
             (route) => false,
           );
         },
-        child: Icon(Icons.send),
+        child: Icon(Icons.send_rounded),
+        // child: Row(children: [Text("Next"), Icon(Icons.send_rounded)]),
       ),
     );
   }

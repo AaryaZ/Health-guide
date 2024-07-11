@@ -3,8 +3,10 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthguide/screens/login.dart';
 import 'package:healthguide/screens/onboarding.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -18,19 +20,35 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
-    _startSplashSequence();
+    // _startSplashSequence();
+    _navigateToNextScreen();
   }
 
-  _startSplashSequence() async {
-    await Future.delayed(Duration(seconds: 2), () {
-      setState(() {
-        _showFirstSplash = false;
-      });
-    });
-    await Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => Onboarding()));
-    });
+  // _startSplashSequence() async {
+  //   await Future.delayed(Duration(seconds: 2), () {
+  //     setState(() {
+  //       _showFirstSplash = false;
+  //     });
+  //   });
+  //   await Future.delayed(Duration(seconds: 2), () {
+  //     Navigator.pushReplacement(
+  //         context, MaterialPageRoute(builder: (context) => Onboarding()));
+  //   });
+  // }
+
+  Future<void> _navigateToNextScreen() async {
+    final prefs = await SharedPreferences.getInstance();
+    final bool hasSeenOnboarding = prefs.getBool('hasSeenOnboarding') ?? false;
+
+    await Future.delayed(const Duration(seconds: 5));
+
+    if (hasSeenOnboarding == true) {
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (_) => const Login()));
+    } else {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (_) => const Onboarding()));
+    }
   }
 
   @override
@@ -78,7 +96,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Widget _buildSecondSplash() {
     return Container(
-      key: UniqueKey(), // Ensure AnimatedSwitcher recognizes this as a new widget
+      key:
+          UniqueKey(), // Ensure AnimatedSwitcher recognizes this as a new widget
       color: Color(0xFFE8EAF0), // Background color of the page
       child: Center(
         child: Container(

@@ -41,7 +41,7 @@ Future<void> verifyOTP(
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBarHG(
           title: "Verification  Failed",
-          text: "Failed to login. Please try again later.",
+          text: "Failed to login. Please enter correct OTP.",
         ).show(),
       );
     }
