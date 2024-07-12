@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:healthguide/Profile/Profile%20Options/Settings/aboutUsScreen.dart';
 import 'package:healthguide/Profile/Profile%20Options/Settings/accountScreen.dart';
 import 'package:healthguide/Profile/Profile%20Options/Settings/appVersionScreen.dart';
@@ -8,6 +9,7 @@ import 'package:healthguide/Profile/Profile%20Options/Settings/logoutScreen.dart
 import 'package:healthguide/Profile/Profile%20Options/Settings/measurementScreen.dart';
 import 'package:healthguide/Profile/Profile%20Options/Settings/privacyPolicy.dart';
 import 'package:healthguide/Profile/Profile%20Options/Settings/refreshScreen.dart';
+import 'package:healthguide/screens/login.dart';
 
 class SettingScreen extends StatefulWidget {
   @override
@@ -74,10 +76,9 @@ class _SettingScreenState extends State<SettingScreen> {
       title: Text(title),
       trailing: Icon(Icons.chevron_right),
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => page),
-        );
+        logOut();
+        Navigator.of(context)
+            .pushReplacement(MaterialPageRoute(builder: (_) => Login()));
       },
     );
   }
@@ -103,4 +104,9 @@ class ReportsPage extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<void> logOut() async {
+  final storage = FlutterSecureStorage();
+  await storage.write(key: 'loggedin', value: 'False');
 }
