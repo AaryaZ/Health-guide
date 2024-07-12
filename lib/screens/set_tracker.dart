@@ -42,19 +42,31 @@ class _SetTrackerState extends State<SetTracker> {
   ];
 
   List<String> selectedTrackerTitles = [];
+  List<String> allTrackerTitles = [
+    'sleep',
+    'weight',
+    'workOut',
+    'stepCounter',
+    'water',
+    'calories',
+    'respiratory',
+    'heartRate',
+    'medicine'
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(253, 232, 234, 240),
+      backgroundColor: Color(0xFBDEE4F7),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             backgroundColor: const Color.fromARGB(255, 16, 49, 140),
             floating: true,
             pinned: true,
-            expandedHeight: 350,
+            expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
+              centerTitle: true,
               background: Image.asset(
                 'lib/images/Wellbeing.jpg',
                 fit: BoxFit.fitWidth,
@@ -118,25 +130,58 @@ class _SetTrackerState extends State<SetTracker> {
           )
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color.fromARGB(255, 16, 49, 140),
-        foregroundColor: Colors.white,
-        elevation: 30,
-        // label: Text("Next"),
-        // icon: Icon(Icons.send_rounded),
-        onPressed: () {
-          sendSelectedTrackers(context, selectedTrackerTitles);
-          protectedRoute(context);
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => BottomNav()),
-            (route) => false,
-          );
-        },
-        child: Icon(Icons.send_rounded),
-        // child: Row(children: [Text("Next"), Icon(Icons.send_rounded)]),
+      floatingActionButton: Stack(
+        children: <Widget>[
+          Positioned(
+            bottom: 10.0,
+            right: 10.0,
+            child: FloatingActionButton.extended(
+              heroTag: 'Nexttag',
+              backgroundColor: const Color.fromARGB(255, 16, 49, 140),
+              foregroundColor: Colors.white,
+              elevation: 30,
+              label: Text("Next"),
+              icon: Icon(Icons.send_rounded),
+              onPressed: () {
+                sendSelectedTrackers(context, selectedTrackerTitles);
+                protectedRoute(context);
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => BottomNav()),
+                  (route) => false,
+                );
+              },
+              // child: Icon(Icons.send_rounded),
+            ),
+          ),
+          Positioned(
+            bottom: 70.0,
+            right: 10.0,
+            child: FloatingActionButton.extended(
+              heroTag: 'skipTag',
+              backgroundColor: Colors.white,
+              foregroundColor: const Color.fromARGB(255, 16, 49, 140),
+              elevation: 30,
+              label: Text("Skip"),
+              icon: Icon(Icons.thumb_down_alt_rounded),
+              onPressed: () {
+                sendSelectedTrackers(context, allTrackerTitles);
+                protectedRoute(context);
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => BottomNav()),
+                  (route) => false,
+                );
+              },
+              // child: Icon(Icons.skip_next),
+            ),
+          ),
+        ],
       ),
+
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+
+      //skip button
     );
   }
 }
@@ -163,7 +208,7 @@ Widget customListTile(
   return Padding(
     padding: const EdgeInsets.all(10),
     child: ListTile(
-      tileColor: isSelected ? Colors.white38 : Colors.white70,
+      tileColor: isSelected ? Color(0xFFF3F5F6) : Colors.white54,
       minTileHeight: 80,
       leading: CircleAvatar(
         radius: 40,
@@ -178,8 +223,9 @@ Widget customListTile(
           fontStyle: FontStyle.normal,
         ),
       ),
-      trailing:
-          isSelected ? Icon(Icons.check_circle, color: Colors.green) : null,
+      trailing: isSelected
+          ? Icon(Icons.check_circle, color: Colors.green)
+          : Icon(Icons.check_circle_outline, color: Colors.blueGrey),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),

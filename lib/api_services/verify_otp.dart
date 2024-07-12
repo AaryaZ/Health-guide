@@ -31,6 +31,8 @@ Future<void> verifyOTP(
       String refreshToken = responseBody['refreshToken'];
       await storage.write(key: 'accessToken', value: accessToken);
       await storage.write(key: 'refreshToken', value: refreshToken);
+      //logged in
+      await storage.write(key: 'loggedin', value: 'True');
 
       Navigator.pushAndRemoveUntil(
         context,

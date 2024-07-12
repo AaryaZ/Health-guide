@@ -33,14 +33,17 @@ class SnackBarHG {
                             color: Colors.red,
                             fontWeight: FontWeight.w700),
                       ),
-                      Text(
-                        text,
-                        style: GoogleFonts.inter(
-                            fontSize: 14,
-                            color: Colors.red,
-                            fontWeight: FontWeight.w500),
-                        maxLines: 2,
-                        overflow: TextOverflow.clip,
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          text,
+                          style: GoogleFonts.inter(
+                              fontSize: 14,
+                              color: Colors.red,
+                              fontWeight: FontWeight.w500),
+                          maxLines: 2,
+                          overflow: TextOverflow.visible,
+                        ),
                       ),
                     ],
                   ),

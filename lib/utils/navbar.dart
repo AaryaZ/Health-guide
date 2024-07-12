@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:healthguide/Home/homeScreen.dart';
 import 'package:healthguide/Plan/planScreen.dart';
 import 'package:healthguide/Profile/profileScreen.dart';
+import 'package:healthguide/screens/login.dart';
 
 class BottomNav extends StatefulWidget {
   @override
@@ -51,6 +54,28 @@ class _BottomNavState extends State<BottomNav> {
         selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
         onTap: _onItemTapped,
       ),
+      floatingActionButton: _selectedIndex == 2
+          ? FloatingActionButton.extended(
+              backgroundColor: const Color.fromARGB(255, 16, 49, 140),
+              foregroundColor: Colors.white,
+              onPressed: () {
+                logOut();
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (_) => Login()));
+              },
+              label: Text("Logout",
+                  style: GoogleFonts.inter(
+                    fontWeight: FontWeight.w600,
+                    fontStyle: FontStyle.normal,
+                  )),
+              icon: Icon(Icons.logout_rounded, color: Colors.white),
+            )
+          : null,
     );
   }
+}
+
+Future<void> logOut() async {
+  final storage = FlutterSecureStorage();
+  await storage.write(key: 'loggedin', value: 'False');
 }

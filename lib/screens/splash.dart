@@ -2,9 +2,11 @@ import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthguide/screens/login.dart';
 import 'package:healthguide/screens/onboarding.dart';
+import 'package:healthguide/utils/navbar.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -37,14 +39,28 @@ class _SplashScreenState extends State<SplashScreen> {
   // }
 
   Future<void> _navigateToNextScreen() async {
+    await Future.delayed(Duration(seconds: 2), () {
+      setState(() {
+        _showFirstSplash = false;
+      });
+    });
     final prefs = await SharedPreferences.getInstance();
     final bool hasSeenOnboarding = prefs.getBool('hasSeenOnboarding') ?? false;
 
     await Future.delayed(const Duration(seconds: 5));
 
+    //for login status
+    final storage = FlutterSecureStorage();
+    String? l = await storage.read(key: 'loggedin');
+
     if (hasSeenOnboarding == true) {
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => const Login()));
+      if (l == "False") {
+        Navigator.of(context)
+            .pushReplacement(MaterialPageRoute(builder: (_) => const Login()));
+      } else {
+        Navigator.of(context)
+            .pushReplacement(MaterialPageRoute(builder: (_) => BottomNav()));
+      }
     } else {
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (_) => const Onboarding()));
@@ -81,14 +97,17 @@ class _SplashScreenState extends State<SplashScreen> {
             color: Colors.white,
           ),
         ),
-        child: AnimatedTextKit(
-          animatedTexts: [
-            FadeAnimatedText(
-              'YourHealthGuide',
-              duration: Duration(seconds: 2),
-            ),
-          ],
-          totalRepeatCount: 1,
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: AnimatedTextKit(
+            animatedTexts: [
+              FadeAnimatedText(
+                'YourHealthGuide',
+                duration: Duration(seconds: 2),
+              ),
+            ],
+            totalRepeatCount: 1,
+          ),
         ),
       ),
     );

@@ -57,18 +57,21 @@ class _HomeScreenState extends State<HomeScreen> {
     TransformationData(
         beforeImage: 'assets/before1.png',
         afterImage: 'assets/after1.png',
-        description: 'Weight loss in 3 months',
-        title: 'From 125 kgs to 75 kgs, this entrepreneur went from fat to f'),
+        title: 'Muscle Gain in 5 months',
+        description:
+            'This guy gained a massive 20 kilos in just 3 months! This is how he did it.'),
     TransformationData(
         beforeImage: 'assets/before2.png',
         afterImage: 'assets/after2.png',
-        description: 'Muscle gain in 6 months',
-        title: 'From 125 kgs to 75 kgs, this entrepreneur went from fat to f'),
+        title: 'Muscle gain in 6 months',
+        description:
+            'From 125 kgs to 75 kgs, this entrepreneur went from fat to f'),
     TransformationData(
         beforeImage: 'assets/before3.png',
         afterImage: 'assets/after3.png',
-        description: 'Fat loss in 4 months',
-        title: 'From 125 kgs to 75 kgs, this entrepreneur went from fat to f'),
+        title: 'Fat loss in 4 months',
+        description:
+            'From 125 kgs to 75 kgs, this entrepreneur went from fat to f'),
   ];
 
   @override
@@ -375,11 +378,15 @@ class _HomeScreenState extends State<HomeScreen> {
               SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white24,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   height: 370,
                   child: GridView.count(
                     shrinkWrap: true,
                     crossAxisCount: 2,
-                    childAspectRatio: 1,
+                    childAspectRatio: 0.9,
                     children: [
                       TrackerCircularProgress(
                           title: 'Weight',
@@ -624,14 +631,14 @@ class TrackerCircularProgress extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height: 16),
+            SizedBox(height: 10),
             Text(
               title,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 15),
             ),
             Text(
               subtitle,
-              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 6),
             ),
             SizedBox(height: 30),
             Stack(
@@ -674,7 +681,15 @@ class TransformationCard extends StatefulWidget {
 }
 
 class _TransformationCardState extends State<TransformationCard> {
+  bool _isFavorite = false;
   bool _showDescription = false;
+
+  void _toggleFavorite() {
+    setState(() {
+      _isFavorite = !_isFavorite;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -686,30 +701,40 @@ class _TransformationCardState extends State<TransformationCard> {
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Image.asset(widget.beforeImage, width: 90, height: 160),
-                  Image.asset(widget.afterImage, width: 90, height: 160),
-                ],
-              ),
-              SizedBox(height: 8),
-              Text(widget.description),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Icon(Icons.favorite_border),
-              ),
-              if (_showDescription)
-                Text(
-                  widget.description,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                  ),
+          child: Stack(children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: GestureDetector(
+                onTap: _toggleFavorite,
+                child: Icon(
+                  _isFavorite ? Icons.favorite : Icons.favorite_border,
+                  color: _isFavorite ? Colors.red : null,
                 ),
-            ],
-          ),
+              ),
+            ),
+            Column(
+              children: [
+                SizedBox(height: 22),
+                Row(
+                  children: [
+                    Image.asset(widget.beforeImage, width: 90, height: 160),
+                    Image.asset(widget.afterImage, width: 90, height: 160),
+                  ],
+                ),
+                SizedBox(height: 8),
+                Text(widget.title),
+                if (_showDescription)
+                  Text(
+                    widget.description,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 6,
+                    ),
+                    maxLines: 2,
+                  ),
+              ],
+            ),
+          ]),
         ),
       ),
     );

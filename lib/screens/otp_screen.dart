@@ -34,7 +34,7 @@ class _OtpScreenState extends State<OtpScreen> {
           child: Center(
             child: Padding(
               padding: EdgeInsets.symmetric(
-                  vertical: GlobalHeight * 0.06,
+                  vertical: GlobalHeight * 0.09,
                   horizontal: GlobalWidth * 0.05),
               child: Column(
                 children: [
@@ -51,7 +51,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       )),
                   Container(
                     width: GlobalWidth * 0.4,
-                    height: GlobalHeight * 0.4,
+                    height: GlobalHeight * 0.3,
                     decoration: const BoxDecoration(
                       // backgroundBlendMode: BlendMode.colorDodge,
                       shape: BoxShape.circle,
@@ -70,9 +70,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             spreadRadius: 1.0)
                       ],
                     ),
-                    child: Lottie.network(
-                        'https://lottie.host/4c00db94-be91-4210-a927-0156febf2546/M0DFTdMGBm.json',
-                        repeat: false),
+                    child: Lottie.asset("assets/anims/otp.json", repeat: false),
                   ),
                   // SizedBox(height: GlobalHeight * 0.03),
                   FittedBox(
@@ -87,7 +85,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: GlobalHeight * 0.02),
+                  SizedBox(height: GlobalHeight * 0.01),
                   Text(
                     "Enter the OTP send to your \n phone number",
                     maxLines: 2,

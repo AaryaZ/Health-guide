@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:healthguide/screens/otp_screen.dart';
 import 'package:healthguide/screens/registration/name.dart';
 import 'package:http/http.dart' as http;

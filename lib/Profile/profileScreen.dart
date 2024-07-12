@@ -1,3 +1,4 @@
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:healthguide/Profile/Profile%20Options/Goals/goalScreen.dart';
@@ -121,7 +122,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        'Win exciting rewards via referral codes',
+                        'Win exciting rewards\n via referral codes',
                         style: TextStyle(color: Colors.grey, fontSize: 12.0),
                       ),
                       SizedBox(height: 10.0),
@@ -135,9 +136,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           IconButton(
                             icon: Icon(Icons.copy, color: Colors.white),
                             onPressed: () {
-                              // Copy code to clipboard
+                              String linkToCopy =
+                                  'https://www.nanobioslab.com/';
+
+                              FlutterClipboard.copy(linkToCopy).then((value) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content:
+                                          Text('Link copied to clipboard')),
+                                );
+                              });
                             },
-                          ),
+                          )
                         ],
                       ),
                     ],
